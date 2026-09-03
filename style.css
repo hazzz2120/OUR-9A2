@@ -1156,3 +1156,48 @@ footer div {
     }
 
 }
+
+/* =========================
+   TEACHER POPUP
+========================= */
+
+.hidden {
+    display: none !important;
+}
+
+.teacher-popup-box {
+    max-width: 500px;
+}
+
+.teacher-popup-box .gate-image img {
+    width: 180px;
+    height: 220px;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+}
+
+.teacher-popup-role {
+    margin-top: -5px;
+
+    font-weight: 600;
+
+    color: #587788;
+}
+
+.teacher-popup-description {
+    line-height: 1.7;
+
+    margin: 20px 10px;
+
+    font-size: 14px;
+
+    color: #71838d;
+}
+
+#continueTeacher {
+    width: 100%;
+
+    margin-top: 5px;
+}

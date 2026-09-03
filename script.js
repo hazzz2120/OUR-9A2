@@ -38,6 +38,16 @@ const CONFIG = {
 
     },
 
+    teacher: {
+    name: "Cô Đỗ Thị Oanh",
+    role: "Giáo viên chủ nhiệm lớp 9A2 trong 4 năm qua",
+    image: "assets/anh/437a6c31-99da-4ab5-8c45-a48ca37ff258.jpg",
+    description:
+        "Cô là người đã đồng hành cùng chúng em trong những năm tháng đáng nhớ. Cảm ơn cô vì những bài học, sự quan tâm và những kỷ niệm đẹp mà cô đã dành cho tập thể 9A2."
+    },
+
+    
+
 
     /* THÀNH VIÊN */
 
@@ -59,17 +69,17 @@ const CONFIG = {
 
 
         {
-            name: "",
-            role: "Thành viên",
+            name: "Nguyễn Tuyết Nhung",
+            role: "Lớp phó trật tự:)",
 
             image:
                 "assets/members/minh-anh.jpg",
 
             hobby:
-                "Âm nhạc, Đọc sách",
+                "cầu lông",
 
             message:
-                "Mong mọi người luôn vui."
+                "đời bố, bố quản."
         },
 
 
@@ -233,7 +243,7 @@ const CONFIG = {
 
 
         {
-            name: "Nguyễn Bảo Trâm",
+            name: "Phạm Bảo Trâm",
 
             text:
                 "chờ cập nhật thêm:))"
@@ -405,24 +415,26 @@ function createQuestion() {
 
         button.onclick = () => {
 
-            if (answer.correct) {
+    if (answer.correct) {
+
+        gateMessage.textContent =
+            "Chính xác ♥";
+
+        gateMessage.style.color =
+            "#4f9b72";
+
+        setTimeout(() => {
+
+            gatekeeper.classList.add("hidden");
+
+            showTeacherPopup();
+
+        }, 500);
+
+}else {
 
                 gateMessage.textContent =
-                    "Chính xác ♥";
-
-                gateMessage.style.color =
-                    "#4f9b72";
-
-                setTimeout(() => {
-
-                    gatekeeper.classList.add("hidden");
-
-                }, 500);
-
-            } else {
-
-                gateMessage.textContent =
-                    "Sai rồi, thử lại nhé.";
+                    "sai rồi brooooo";
 
                 gateMessage.style.color =
                     "#d16c78";
@@ -438,6 +450,35 @@ function createQuestion() {
 }
 
 createQuestion();
+
+const teacherPopup =
+    $("#teacherPopup");
+
+
+function showTeacherPopup() {
+
+    $("#teacherImage").src =
+        CONFIG.teacher.image;
+
+    $("#teacherName").textContent =
+        CONFIG.teacher.name;
+
+    $("#teacherRole").textContent =
+        CONFIG.teacher.role;
+
+    $("#teacherDescription").textContent =
+        CONFIG.teacher.description;
+
+    teacherPopup.classList.remove("hidden");
+
+}
+
+
+$("#continueTeacher").onclick = () => {
+
+    teacherPopup.classList.add("hidden");
+
+};
 
 
 $("#closeGate").onclick = () => {

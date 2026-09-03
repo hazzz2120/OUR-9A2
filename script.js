@@ -10,28 +10,28 @@ const CONFIG = {
 
     question: {
 
-        image: "assets/anh/qpv.png",
+        image: "assets/anh/ditn.jpg",
 
-        text: "Biệt danh của lớp trưởng là gì?",
+        text: "Trước đây lớp 9A2 có tên là gì trước khi sáp nhập?",
 
         answers: [
             {
-                text: "A. QBV",
+                text: "A. 9C",
                 correct: false
             },
 
             {
-                text: "B. học bá",
+                text: "B. 9B",
                 correct: true
             },
 
             {
-                text: "C. Vua về nhì",
+                text: "C. 8B",
                 correct: false
             },
 
             {
-                text: "D. nhắn tin = roblox:))",
+                text: "D. 9A",
                 correct: false
             }
         ]
@@ -55,10 +55,10 @@ const CONFIG = {
 
         {
             name: "Quách Phương Vy",
-            role: "Lớp trưởng",
+            role: "Lớp trưởng ( chưa xin phép đăng ảnh nên kco ảnh)",
 
             image:
-                "assets/anh/qpv.png",
+                "chưa xin phép đăng ảnh",
 
             hobby:
                 "học",
@@ -84,26 +84,26 @@ const CONFIG = {
 
 
         {
-            name: "",
-            role: "Thành viên",
+            name: "Nguyễn Phương Ly",
+            role: "Sao đỏ",
 
             image:
-                "assets/members/thu-ngan.jpg",
+                "assets/anh/1788450220131_24401418719614009_24401418719614009_134e330905734455ceea5db2f28bec85.jpg",
 
             hobby:
-                "Chụp ảnh",
+                "Ca hát, múa máy và TIỀN",
 
             message:
-                "Cảm ơn vì đã đồng hành."
+                "Tương lai phú bà."
         },
 
 
         {
             name: "Đinh Hoàng Ngọc Hà",
-            role: "lớp phó kiêm học bá",
+            role: "lớp phó kiêm học bá ( chưa có ảnh ) ",
 
             image:
-                "assets/anh/vvn.png",
+                "chưa có ảnh",
 
             hobby:
                 "chưa biết",
@@ -280,7 +280,7 @@ const CONFIG = {
         },
 
         {
-            name: "chờ:))",
+            name: "Nguyễn Phương Ly",
 
             text: 
                 "chờ cập nhật thêm"

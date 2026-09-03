@@ -137,52 +137,52 @@ const CONFIG = {
     timeline: [
 
         {
-            date: "Tháng 1, 2025",
+            date: "Tháng 1,",
 
-            title: "Ôn Thi Học Kỳ",
+            title: "wait me for upd",
 
             text:
-                "Những ngày miệt mài bên sách vở, cùng nhau cố gắng cho một kết quả tốt nhất."
+                "wait me for upd"
         },
 
 
         {
-            date: "Tháng 2, 2025",
+            date: "Tháng 2, 2026",
 
-            title: "Tết Nguyên Xuân",
+            title: "Tết Nguyên Đán",
 
             text:
-                "Cùng nhau chụp những tấm ảnh, cùng nhau chạy hết mình trong những ngày đầu năm."
+                "Cùng nhau trang trí cho lớp."
         },
 
 
         {
-            date: "Tháng 3, 2025",
+            date: "Ngày 8, Tháng 3, 2026",
 
             title: "Ngày 8/3",
 
             text:
-                "Những món quà nhỏ nhưng chứa đựng rất nhiều tình cảm dành cho các bạn nữ."
+                "Những món quà nhỏ của con trai trong lớp dành cho các bạn nữ, tuy là món quà không to và còn tặng muộn:) nhưng chứa đựng nhiều tình cảm dành cho các bạn nữ. "
         },
 
 
         {
             date: "Tháng 5, 2025",
 
-            title: "Một Chặng Đường",
+            title: "wait me for upd",
 
             text:
-                "Những ngày tháng học tập và vui chơi cùng nhau trở thành ký ức."
+                "wait me for upd"
         },
 
 
         {
-            date: "Tháng 6, 2026",
+            date: "Tháng 6, ",
 
-            title: "Ngày Chia Tay",
+            title: "wait me for upd",
 
             text:
-                "Một hành trình kết thúc để những hành trình mới bắt đầu."
+                "wait me for upd"
         }
 
     ],
@@ -193,58 +193,58 @@ const CONFIG = {
     wishes: [
 
         {
-            name: "An Bình",
+            name: "Quách Phương Vy",
 
             text:
-                "Chúc tất cả chúng ta luôn vui vẻ và thành công trên con đường phía trước."
+                "chờ cập nhật thêm:))"
         },
 
 
         {
-            name: "Minh Anh",
+            name: "Đinh Hoàng Ngọc Hà",
 
             text:
-                "Mong rằng những ngày tháng này sẽ luôn là một phần ký ức đẹp."
+                "chờ cập nhật thêm:))"
         },
 
 
         {
-            name: "Thanh Bình",
+            name: "Đinh Việt Anh",
 
             text:
-                "Thanh xuân của chúng ta tuy ngắn nhưng những kỷ niệm thì sẽ còn mãi."
+                "chờ cập nhật thêm:))"
         },
 
 
         {
-            name: "Thu Ngân",
+            name: "Nguyễn Tuyết Nhung",
 
             text:
-                "Hẹn gặp lại ở một phiên bản tốt hơn của chính chúng ta."
+                "chờ cập nhật thêm:))"
         },
 
 
         {
-            name: "Hoàng Dũng",
+            name: "Nguyễn Minh Hiếu",
 
             text:
-                "Cảm ơn vì đã cùng nhau tạo nên những năm tháng đáng nhớ."
+                "chờ cập nhật thêm:))"
         },
 
 
         {
-            name: "Lê Chi",
+            name: "Nguyễn Bảo Trâm",
 
             text:
-                "Mong rằng dù sau này mỗi người một nơi, chúng ta vẫn nhớ về nhau."
+                "chờ cập nhật thêm:))"
         },
 
 
         {
-            name: "Bảo Thy",
+            name: "Nguyễn Trà My",
 
             text:
-                "Chúc mọi người đạt được những điều mình mong muốn."
+                "chờ cập nhật thêm:))"
         },
 
 
@@ -252,8 +252,64 @@ const CONFIG = {
             name: "Tập thể lớp",
 
             text:
-                "Cảm ơn vì đã biến một lớp học thành một gia đình."
-        }
+                "chờ cập nhật thêm:))"
+        },
+
+        {
+            name: "Đào Quốc Cường",
+
+            text: 
+                "chờ cập nhật thêm"
+        },
+
+        {
+            name: "Phạm Ngọc Hân",
+
+            text: 
+                "chờ cập nhật thêm"
+        },
+
+        {
+            name: "chờ:))",
+
+            text: 
+                "chờ cập nhật thêm"
+        },
+
+        {
+            name: "chờ:))",
+
+            text: 
+                "chờ cập nhật thêm"
+        },
+
+        {
+            name: "chờ:))",
+
+            text: 
+                "chờ cập nhật thêm"
+        },
+
+        {
+            name: "chờ:))",
+
+            text: 
+                "chờ cập nhật thêm"
+        },
+
+        {
+            name: "chờ:))",
+
+            text: 
+                "chờ cập nhật thêm"
+        },
+
+        {
+            name: "chờ:))",
+
+            text: 
+                "chờ cập nhật thêm"
+        },
 
     ],
 

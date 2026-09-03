@@ -22,12 +22,12 @@ const CONFIG = {
 
             {
                 text: "B. học bá",
-                correct: false
+                correct: true
             },
 
             {
                 text: "C. Vua về nhì",
-                correct: true
+                correct: false
             },
 
             {

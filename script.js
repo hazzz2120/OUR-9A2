@@ -500,10 +500,6 @@ $("#closeGate").onclick = () => {
 };
 
 
-/* =========================
-   MEMBERS
-========================= */
-
 const membersContainer =
     $("#membersContainer");
 

@@ -73,7 +73,7 @@ const CONFIG = {
             role: "Lớp phó trật tự:)",
 
             image:
-                "assets/members/minh-anh.jpg",
+                "assets/anh/da51eb87-5aca-4d48-ba65-1a7a6ba64cc5.jpg",
 
             hobby:
                 "cầu lông",

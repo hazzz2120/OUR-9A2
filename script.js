@@ -10,7 +10,7 @@ const CONFIG = {
 
     question: {
 
-        image: "assets/question.jpg",
+        image: "assets/anh/qpv.png",
 
         text: "Biệt danh của lớp trưởng là gì?",
 
@@ -48,7 +48,7 @@ const CONFIG = {
             role: "Lớp trưởng",
 
             image:
-                "assets/members/an-binh.jpg",
+                "assets/anh/qpv.png",
 
             hobby:
                 "học",
@@ -59,7 +59,7 @@ const CONFIG = {
 
 
         {
-            name: "Minh Anh",
+            name: "",
             role: "Thành viên",
 
             image:
@@ -74,7 +74,7 @@ const CONFIG = {
 
 
         {
-            name: "Thu Ngân",
+            name: "",
             role: "Thành viên",
 
             image:
@@ -93,7 +93,7 @@ const CONFIG = {
             role: "lớp phó kiêm học bá",
 
             image:
-                "assets/members/thanh-binh.jpg",
+                "assets/anh/vvn.png",
 
             hobby:
                 "chưa biết",
@@ -109,17 +109,17 @@ const CONFIG = {
 
     gallery: [
 
-        "assets/gallery/01.jpg",
+        "assets\anh\lop8.jpg",
 
-        "assets/gallery/02.jpg",
+        "assets/anh/lop8voithayduc.jpg",
 
-        "assets/gallery/03.jpg",
+        "assets/anh/ditn.jpg",
 
-        "assets/gallery/04.jpg",
+        "assets/anh/sinhnhat.jpg",
 
-        "assets/gallery/05.jpg",
+        "assets/anh/btqsvn.jpg",
 
-        "assets/gallery/06.jpg",
+        "assets/anh/0437dfa1-b52a-44d7-ade7-13d249cf5d1a.jpg",
 
         "assets/gallery/07.jpg",
 

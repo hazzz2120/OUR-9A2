@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Thanh Xuân - Lưu Bút</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =========================
+     MÀN HÌNH CÂU HỎI
+========================= -->
+
+<div id="gatekeeper" class="gatekeeper">
+
+    <div class="gate-box">
+
+        <button id="closeGate" class="close-button">×</button>
+
+        <div class="gate-image">
+            <img id="questionImage" src="assets/question.jpg">
+        </div>
+
+        <p class="gate-small">
+            Một câu hỏi nhỏ trước khi bước vào...
+        </p>
+
+        <h2 id="questionText">
+            Biệt danh của lớp trưởng là gì?
+        </h2>
+
+        <div id="answers" class="answers"></div>
+
+        <p id="gateMessage"></p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        <a href="#home">Thanh Xuân</a>
+    </div>
+
+    <nav>
+
+        <a href="#home">Trang chủ</a>
+        <a href="#members">Thành viên</a>
+        <a href="#gallery">Khoảnh khắc</a>
+        <a href="#timeline">Dòng thời gian</a>
+        <a href="#video">Lưu bút</a>
+        <a href="#wishes">Nhắn</a>
+
+    </nav>
+
+    <button id="musicButton" class="music-button">
+        ♫
+    </button>
+
+</header>
+
+
+<!-- =========================
+     TRANG CHỦ
+========================= -->
+
+<main>
+
+<section id="home" class="hero">
+
+    <div class="hero-background"></div>
+
+    <div class="hero-content">
+
+        <p class="subtitle">
+            KỶ NIỆM MỘT THỜI
+        </p>
+
+        <h1 id="classTitle">
+            Thanh Xuân
+        </h1>
+
+        <p id="classDescription">
+            Nơi lưu giữ những ngày tháng đẹp nhất
+            của chúng ta.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#members" class="main-button">
+                Xem thành viên
+            </a>
+
+            <a href="#gallery" class="outline-button">
+                Xem kỷ niệm
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     THÀNH VIÊN
+========================= -->
+
+<section id="members" class="section">
+
+    <div class="section-title">
+
+        <p>9A2 CỦA CHÚNG TÔI</p>
+
+        <h2>
+            Những gương mặt tiêu biểu của 9A2
+        </h2>
+
+        <span></span>
+
+    </div>
+
+    <div id="membersContainer" class="members-grid"></div>
+
+</section>
+
+
+<!-- =========================
+     GALLERY
+========================= -->
+
+<section id="gallery" class="section">
+
+    <div class="section-title">
+
+        <p>MEMORIES</p>
+
+        <h2>
+            Những khoảnh khắc
+        </h2>
+
+        <span></span>
+
+    </div>
+
+    <div id="galleryContainer" class="gallery-grid"></div>
+
+</section>
+
+
+<!-- =========================
+     TIMELINE
+========================= -->
+
+<section id="timeline" class="section">
+
+    <div class="section-title">
+
+        <p>CÂU CHUYỆN CỦA CHÚNG TÔI</p>
+
+        <h2>
+            Dòng thời gian
+        </h2>
+
+        <span></span>
+
+    </div>
+
+    <div id="timelineContainer" class="timeline"></div>
+
+</section>
+
+
+<!-- =========================
+     VIDEO
+========================= -->
+
+<section id="video" class="section">
+
+    <div class="section-title">
+
+        <p>VIDEO</p>
+
+        <h2>
+            Lưu bút
+        </h2>
+
+        <span></span>
+
+    </div>
+
+    <div class="video-container">
+
+        <video
+            id="memoryVideo"
+            controls
+            playsinline
+            poster="assets/video-poster.jpg">
+
+            <source src="assets/video/class.mp4" type="video/mp4">
+
+        </video>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LỜI NHẮN
+========================= -->
+
+<section id="wishes" class="section wishes-section">
+
+    <div class="section-title">
+
+        <p>MESSAGES</p>
+
+        <h2>
+            Những lời nhắn nhủ
+        </h2>
+
+        <span></span>
+
+    </div>
+
+    <div id="wishesContainer" class="wishes-grid"></div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <h2 id="footerTitle">
+        Thanh Xuân
+    </h2>
+
+    <p>
+        Có những người chỉ gặp một lần,
+        nhưng ký ức thì ở lại cả đời.
+    </p>
+
+    <div>
+        ♥
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     MUSIC PLAYER
+========================= -->
+
+<div id="musicPlayer" class="music-player">
+
+    <button id="closeMusic">
+        ×
+    </button>
+
+    <div class="music-info">
+
+        <img
+            id="musicCover"
+            src="assets/music-cover.jpg">
+
+        <div>
+
+            <small>
+                ĐANG PHÁT
+            </small>
+
+            <strong id="musicName">
+                Tháng Năm Không Quên
+            </strong>
+
+        </div>
+
+    </div>
+
+    <div class="music-controls">
+
+        <button id="prevMusic">
+            ⏮
+        </button>
+
+        <button id="playMusic">
+            ▶
+        </button>
+
+        <button id="nextMusic">
+            ⏭
+        </button>
+
+    </div>
+
+    <audio id="audio"></audio>
+
+</div>
+
+
+<!-- =========================
+     MODAL THÀNH VIÊN
+========================= -->
+
+<div id="memberModal" class="modal">
+
+    <div class="member-modal">
+
+        <button class="modal-close">
+            ×
+        </button>
+
+        <img id="modalMemberImage">
+
+        <h2 id="modalMemberName"></h2>
+
+        <p id="modalMemberRole"></p>
+
+        <div class="profile-line">
+            ♥
+            <span id="modalMemberHobby"></span>
+        </div>
+
+        <div class="profile-line">
+            💬
+            <span id="modalMemberMessage"></span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL ẢNH
+========================= -->
+
+<div id="imageModal" class="image-modal">
+
+    <button class="image-close">
+        ×
+    </button>
+
+    <button id="previousImage" class="image-arrow left">
+        ‹
+    </button>
+
+    <img id="largeImage">
+
+    <button id="nextImage" class="image-arrow right">
+        ›
+    </button>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

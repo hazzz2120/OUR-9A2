@@ -329,13 +329,13 @@ const CONFIG = {
     music: [
 
         {
-            name: "Có hẹn với thanh xuân",
+            name: "Phép màu",
 
             file:
-                "assets/music/cohenvoithanhxuan.mp3",
+                "assets/music/pm.mp3",
 
             cover:
-                "assets/anh/avt.png"
+                "assets/anh/Ảnh chụp màn hình 2026-09-03 214824.png"
         },
 
 
@@ -358,7 +358,19 @@ const CONFIG = {
 
             cover:
                 "assets/anh/nta.png"
-        }
+        },
+
+        {
+            name: "Có hẹn với thanh xuân",
+
+            file:
+                "assets/music/cohenvoithanhxuan.mp3",
+
+            cover:
+                "assets/anh/avt.png"
+        },
+
+        
 
     ]
 
@@ -418,7 +430,7 @@ function createQuestion() {
     if (answer.correct) {
 
         gateMessage.textContent =
-            "Chính xác ♥";
+            "đúng rồi đấy ";
 
         gateMessage.style.color =
             "#4f9b72";

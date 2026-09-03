@@ -75,19 +75,43 @@ nav a:hover {
 .music-button {
     margin-left: 25px;
 
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
 
-    border: none;
+    border: 2px solid #b9dce9;
     border-radius: 50%;
 
-    background: #fff;
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #dff4fc
+    );
 
-    color: #4d88ad;
+    color: #385d75;
 
     cursor: pointer;
 
-    box-shadow: 0 5px 20px rgba(50, 100, 120, .1);
+    font-size: 23px;
+
+    box-shadow:
+        0 6px 20px rgba(50, 100, 120, .18),
+        0 0 0 5px rgba(185, 220, 233, .18);
+
+    transition: .3s;
+
+    animation: musicPulse 2s ease-in-out infinite;
+}
+
+.music-button:hover {
+    transform: scale(1.12);
+
+    box-shadow:
+        0 8px 25px rgba(50, 100, 120, .25),
+        0 0 0 7px rgba(185, 220, 233, .22);
+}
+
+.music-button:active {
+    transform: scale(.95);
 }
 
 
@@ -1200,4 +1224,20 @@ footer div {
     width: 100%;
 
     margin-top: 5px;
+}
+
+@keyframes musicPulse {
+
+    0%, 100% {
+        box-shadow:
+            0 6px 20px rgba(50, 100, 120, .18),
+            0 0 0 5px rgba(185, 220, 233, .18);
+    }
+
+    50% {
+        box-shadow:
+            0 8px 25px rgba(50, 100, 120, .25),
+            0 0 0 9px rgba(185, 220, 233, .08);
+    }
+
 }

@@ -135,7 +135,7 @@ const CONFIG = {
 
     gallery: [
 
-        "assets\anh\lop8.jpg",
+        "assets/anh/lop8.jpg",
 
         "assets/anh/lop8voithayduc.jpg",
 
@@ -303,35 +303,35 @@ const CONFIG = {
         },
 
         {
-            name: "chờ:))",
+            name: "Nguyễn Kiều Trang",
 
             text: 
                 "chờ cập nhật thêm"
         },
 
         {
-            name: "chờ:))",
+            name: "Đinh Bảo Long",
 
             text: 
                 "chờ cập nhật thêm"
         },
 
         {
-            name: "chờ:))",
+            name: "Nguyễn Phúc Khánh Nam",
 
             text: 
                 "chờ cập nhật thêm"
         },
 
         {
-            name: "chờ:))",
+            name: "Hoàng Hải Băng",
 
             text: 
                 "chờ cập nhật thêm"
         },
 
         {
-            name: "chờ:))",
+            name: "Hoàng Vũ Thành Đạt",
 
             text: 
                 "chờ cập nhật thêm"
@@ -340,7 +340,7 @@ const CONFIG = {
     ],
 
 
-    /* NHẠC */
+
 
     music: [
 
@@ -354,7 +354,6 @@ const CONFIG = {
                 "assets/anh/Ảnh chụp màn hình 2026-09-03 214824.png"
         },
 
-
         {
             name: "Mình cùng nhau đóng băng",
 
@@ -364,7 +363,6 @@ const CONFIG = {
             cover:
                 "assets/anh/mcndb.png"
         },
-
 
         {
             name: "Năm tháng ấy",
@@ -385,8 +383,6 @@ const CONFIG = {
             cover:
                 "assets/anh/avt.png"
         },
-
-        
 
     ]
 
@@ -449,7 +445,7 @@ function createQuestion() {
             "đúng rồi đấy ";
 
         gateMessage.style.color =
-            "#4f9b72";
+            "#0042f8ff";
 
         setTimeout(() => {
 
@@ -465,7 +461,7 @@ function createQuestion() {
                     "sai rồi brooooo";
 
                 gateMessage.style.color =
-                    "#d16c78";
+                    "#e60e27ff";
 
             }
 

@@ -21,9 +21,6 @@ a {
 }
 
 
-/* =========================
-   HEADER
-========================= */
 
 header {
     height: 72px;
@@ -114,10 +111,6 @@ nav a:hover {
     transform: scale(.95);
 }
 
-
-/* =========================
-   HERO
-========================= */
 
 .hero {
     min-height: 100vh;
@@ -257,9 +250,6 @@ nav a:hover {
 }
 
 
-/* =========================
-   SECTION
-========================= */
 
 .section {
     max-width: 1150px;
@@ -313,9 +303,6 @@ nav a:hover {
 }
 
 
-/* =========================
-   MEMBERS
-========================= */
 
 .members-grid {
     display: grid;
@@ -375,9 +362,6 @@ nav a:hover {
 }
 
 
-/* =========================
-   GALLERY
-========================= */
 
 .gallery-grid {
     columns: 3 250px;
@@ -414,9 +398,6 @@ nav a:hover {
 }
 
 
-/* =========================
-   TIMELINE
-========================= */
 
 .timeline {
     position: relative;
@@ -509,9 +490,6 @@ nav a:hover {
 }
 
 
-/* =========================
-   VIDEO
-========================= */
 
 .video-container {
     background: #15222a;
@@ -536,9 +514,6 @@ nav a:hover {
 }
 
 
-/* =========================
-   WISHES
-========================= */
 
 .wishes-section {
     max-width: 1250px;
@@ -617,10 +592,6 @@ nav a:hover {
 }
 
 
-/* =========================
-   FOOTER
-========================= */
-
 footer {
     text-align: center;
 
@@ -650,9 +621,6 @@ footer div {
 }
 
 
-/* =========================
-   MUSIC
-========================= */
 
 .music-player {
     position: fixed;
@@ -767,9 +735,7 @@ footer div {
 }
 
 
-/* =========================
-   GATEKEEPER
-========================= */
+
 
 .gatekeeper {
     position: fixed;
@@ -895,10 +861,6 @@ footer div {
 }
 
 
-/* =========================
-   MODAL
-========================= */
-
 .modal {
     position: fixed;
 
@@ -993,10 +955,6 @@ footer div {
 }
 
 
-/* =========================
-   IMAGE MODAL
-========================= */
-
 .image-modal {
     position: fixed;
 
@@ -1063,9 +1021,6 @@ footer div {
 }
 
 
-/* =========================
-   ANIMATION
-========================= */
 
 @keyframes floating {
 
@@ -1100,9 +1055,6 @@ footer div {
 }
 
 
-/* =========================
-   MOBILE
-========================= */
 
 @media(max-width: 800px) {
 
@@ -1184,9 +1136,6 @@ footer div {
 
 }
 
-/* =========================
-   TEACHER POPUP
-========================= */
 
 .hidden {
     display: none !important;

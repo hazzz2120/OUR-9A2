@@ -135,21 +135,21 @@ const CONFIG = {
 
     gallery: [
 
-        "assets/anh/lop8.jpg",
+        "assets/anh/lop7td.jpg",
 
-        "assets/anh/lop8voithayduc.jpg",
+        "assets/anh/mualop8.jpg",
+
+        "assets/anh/snhatbanh.jpg",
+
+        "assets/anh/xetang.jpg",
+
+        "assets/anh/anhl8.jpg",
 
         "assets/anh/ditn.jpg",
 
-        "assets/anh/sinhnhat.jpg",
-
-        "assets/anh/btqsvn.jpg",
-
-        "assets/anh/0437dfa1-b52a-44d7-ade7-13d249cf5d1a.jpg",
-
         "assets/anh/IMG_20260329_135459_429.jpg",
 
-        "assets/gallery/08.jpg",
+        "assets/anh/idk.jpg",
 
         "assets/gallery/09.jpg",
 

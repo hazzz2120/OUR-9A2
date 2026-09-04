@@ -147,7 +147,7 @@ const CONFIG = {
 
         "assets/anh/0437dfa1-b52a-44d7-ade7-13d249cf5d1a.jpg",
 
-        "assets/gallery/07.jpg",
+        "assets/anh/IMG_20260329_135459_429.jpg",
 
         "assets/gallery/08.jpg",
 
@@ -168,7 +168,7 @@ const CONFIG = {
             title: "khai giảng năm học mới 2026-2027",
 
             text:
-                ""
+                "1 năm học mới lại đến mà tôi cứ tưởng là 365 ngày đã qua"
         },
 
 
@@ -320,7 +320,7 @@ const CONFIG = {
             name: "Nguyễn Phúc Khánh Nam",
 
             text: 
-                "chờ cập nhật thêm"
+                ""
         },
 
         {

@@ -58,7 +58,7 @@ const CONFIG = {
             role: "Lớp trưởng ( chưa xin phép đăng ảnh nên kco ảnh)",
 
             image:
-                "chưa xin phép đăng ảnh",
+                "assets/anh/avtv.jpg",
 
             hobby:
                 "học",
@@ -103,14 +103,30 @@ const CONFIG = {
             role: "lớp phó kiêm học bá ( chưa có ảnh ) ",
 
             image:
-                "chưa có ảnh",
+                "assets/anh/abt.jpg",
 
             hobby:
                 "chưa biết",
 
             message:
                 "Hẹn gặp lại nhé."
-        }
+        },
+
+        {
+            name: "Nguyễn Trà My",
+            role: "sao đỏ",
+
+            image:
+                "assets/anh/my.jpg",
+
+            hobby:
+                "lướt tiktok",
+
+            message:
+                "tương lai tỉ phú."
+        },
+
+
 
     ],
 
@@ -254,7 +270,7 @@ const CONFIG = {
             name: "Nguyễn Trà My",
 
             text:
-                "chờ cập nhật thêm:))"
+                "Hallo!!! Chào các bạn nha mình là Nguyễn Trà My thành viên của lớp 9A2. Mình muốn gửi lời cảm ơn và xin lỗi đến các bạn lớp 9A2. Cảm ơn vì đã là 1 phần trong thanh xuân rực rỡ của tớ💗trao cho tớ niềm vui,nỗi buồn,và hạnh phúc.Xin lỗi vì các cậu đã phải chịu đựng cái tính của tớ,nhiều lúc cũng k hiểu sao tớ lại lm như vậy nx. Tớ mong sau này dù mn có buồn hay vui mà k có người trò chuyện thì cứ nhắn tin hoặc gọi điện cho tớ,bởi vì tớ luôn ở đây và lắng nghe các cậu💗 Mong rằng lớp mình sẽ đỗ NV1 hết💝"
         },
 
 

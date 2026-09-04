@@ -551,10 +551,13 @@ nav a:hover {
         repeat(4, 1fr);
 
     gap: 20px;
+    align-items: start;
 }
 
 .wish {
     min-height: 190px;
+
+    height: auto;
 
     padding: 25px;
 
@@ -567,6 +570,8 @@ nav a:hover {
     transition: .3s;
 
     color: #465861;
+
+    align-self: start;
 }
 
 .wish:hover {
@@ -594,13 +599,17 @@ nav a:hover {
 }
 
 .wish p {
-    font-family: Georgia, serif;
+    font-family: "Be Vietnam Pro", sans-serif;
 
-    font-style: italic;
+    font-style: normal;
 
-    line-height: 1.7;
+    line-height: 1.8;
 
     font-size: 14px;
+
+    color: #465861;
+
+    overflow-wrap: break-word;
 }
 
 .wish strong {

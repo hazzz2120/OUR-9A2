@@ -64,7 +64,7 @@ const CONFIG = {
                 "học",
 
             message:
-                "Yêu cả nhà."
+                "nào hỏi sau."
         },
 
 
@@ -106,10 +106,10 @@ const CONFIG = {
                 "assets/anh/abt.jpg",
 
             hobby:
-                "chưa biết",
+                "kbt nữa",
 
             message:
-                "Hẹn gặp lại nhé."
+                "trùm tư duy và ghi nhớ."
         },
 
         {

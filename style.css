@@ -545,19 +545,15 @@ nav a:hover {
 }
 
 .wishes-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 20px;
-    align-items: start;
+    columns: 4 220px;
+    column-gap: 20px;
 }
 
 .wish {
-    min-height: 190px;
+    break-inside: avoid;
+    margin-bottom: 20px;
 
-    height: auto;
+    min-height: 190px;
 
     padding: 25px;
 
@@ -570,8 +566,6 @@ nav a:hover {
     transition: .3s;
 
     color: #465861;
-
-    align-self: start;
 }
 
 .wish:hover {

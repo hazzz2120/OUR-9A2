@@ -163,12 +163,12 @@ const CONFIG = {
     timeline: [
 
         {
-            date: "Tháng 1,",
+            date: "Ngày 5, Tháng 9, năm 2026",
 
-            title: "wait me for upd",
+            title: "khai giảng năm học mới 2026-2027",
 
             text:
-                "wait me for upd"
+                ""
         },
 
 
@@ -246,7 +246,7 @@ const CONFIG = {
             name: "Nguyễn Tuyết Nhung",
 
             text:
-                "chờ cập nhật thêm:))"
+                "Bố chúc tất cả mọi người đỗ c3"
         },
 
 

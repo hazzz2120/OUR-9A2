@@ -179,13 +179,15 @@ websiteIntro: {
 
         "assets/anh/ditn.jpg",
 
-        "assets/anh/IMG_20260329_135459_429.jpg",
-
         "assets/anh/idk.jpg",
 
         "assets/anh/muacg.jpg",
 
-        "assets/gallery/10.jpg"
+        "assets/anh/kg9.jpg",
+
+        "",
+        "",
+
 
     ],
 

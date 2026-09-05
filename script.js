@@ -8,43 +8,75 @@ const CONFIG = {
         "Nơi lưu giữ những ngày tháng đẹp nhất của 9A2.",
 
 
-    question: {
+  teacher: {
 
-        image: "assets/anh/ditn.jpg",
-
-        text: "Trước đây lớp 9A2 có tên là gì trước khi sáp nhập?",
-
-        answers: [
-            {
-                text: "A. 9C",
-                correct: false
-            },
-
-            {
-                text: "B. 9B",
-                correct: true
-            },
-
-            {
-                text: "C. 8B",
-                correct: false
-            },
-
-            {
-                text: "D. 9A",
-                correct: false
-            }
-        ]
-
-    },
-
-    teacher: {
     name: "Cô Đỗ Thị Oanh",
+
     role: "Giáo viên chủ nhiệm lớp 9A2 trong 4 năm qua",
-    image: "assets/anh/437a6c31-99da-4ab5-8c45-a48ca37ff258.jpg",
+
+    image:
+        "assets/anh/437a6c31-99da-4ab5-8c45-a48ca37ff258.jpg",
+
     description:
         "Cô là người đã đồng hành cùng chúng em trong những năm tháng đáng nhớ. Cảm ơn cô vì những bài học, sự quan tâm và những kỷ niệm đẹp mà cô đã dành cho tập thể 9A2."
-    },
+
+},
+
+
+/* =========================
+   GIỚI THIỆU WEBSITE
+========================= */
+
+websiteIntro: {
+
+    title:
+        "Thanh Xuân của 9A2",
+
+    parts: [
+
+        {
+            title:
+                "01 — Giới thiệu trang web",
+
+            text:
+                "Đây là trang web của 9A2 khóa 2026-2027 trường thcs Quỳnh Lưu."
+        },
+
+
+        {
+            title:
+                "02 — Mục đích lập web",
+
+            text:
+                "Web được phát triển với mục đích lưu giữ những kỷ niệm, những khoảng khắc đáng nhớ và đẹp nhất mà các thành viên của lớp 9A2 đã từng trải qua cùng nhau"
+        },
+
+
+        {
+            title:
+                "03 — Một lời nhắn",
+
+            text:
+                "Mong rằng khi quay lại nơi này, chúng ta vẫn có thể nhớ về những ngày tháng đã từng cùng nhau cười, cùng nhau học tập và cùng nhau trưởng thành."
+        },
+
+        {
+            title:
+                "04 - Người phát triển web",
+
+            text:
+                "web được phát triển bởi Đinh Việt Anh, 1 thành viên của 9A2.",
+
+
+            facebook: "https://www.facebook.com/z.vianh"
+
+        },
+
+    ]
+
+},
+
+
 
     
 
@@ -151,7 +183,7 @@ const CONFIG = {
 
         "assets/anh/idk.jpg",
 
-        "assets/gallery/09.jpg",
+        "assets/anh/muacg.jpg",
 
         "assets/gallery/10.jpg"
 
@@ -168,7 +200,7 @@ const CONFIG = {
             title: "khai giảng năm học mới 2026-2027",
 
             text:
-                "1 năm học mới lại đến mà tôi cứ tưởng là 365 ngày đã qua"
+                "Vậy là ngày 5/9, khai giảng năm lớp lớp 9 đã đến nhẹ nhàng nhưng đầy bâng khuâng — tiếng trống khai trường vang lên cũng là lúc đếm ngược từng ngày chia xa mái trường Trung học cơ sở.Bốn năm cấp 2, gói trọn cả một thời ngây thơ, hồn nhiên và đẹp đẽ nhất của tuổi trẻ."
         },
 
 
@@ -406,78 +438,13 @@ $("#classDescription").textContent =
 
 
 
-const gatekeeper =
-    $("#gatekeeper");
-
-const answers =
-    $("#answers");
-
-const gateMessage =
-    $("#gateMessage");
-
-$("#questionImage").src =
-    CONFIG.question.image;
-
-$("#questionText").textContent =
-    CONFIG.question.text;
 
 
-function createQuestion() {
 
-    answers.innerHTML = "";
 
-    CONFIG.question.answers.forEach(answer => {
 
-        const button =
-            document.createElement("button");
-
-        button.className =
-            "answer-button";
-
-        button.textContent =
-            answer.text;
-
-        button.onclick = () => {
-
-    if (answer.correct) {
-
-        gateMessage.textContent =
-            "đúng rồi đấy ";
-
-        gateMessage.style.color =
-            "#0042f8ff";
-
-        setTimeout(() => {
-
-            gatekeeper.classList.add("hidden");
-
-            showTeacherPopup();
-
-        }, 500);
-
-}else {
-
-                gateMessage.textContent =
-                    "sai rồi brooooo";
-
-                gateMessage.style.color =
-                    "#e60e27ff";
-
-            }
-
-        };
-
-        answers.appendChild(button);
-
-    });
-
-}
-
-createQuestion();
-
-const teacherPopup =
-    $("#teacherPopup");
-
+const teacherPopup = $("#teacherPopup");
+const websiteIntro = $("#websiteIntro");
 
 function showTeacherPopup() {
 
@@ -494,7 +461,39 @@ function showTeacherPopup() {
         CONFIG.teacher.description;
 
     teacherPopup.classList.remove("hidden");
+}
 
+showTeacherPopup();
+
+
+function showWebsiteIntro() {
+
+    $("#introTitle").textContent =
+        CONFIG.websiteIntro.title;
+
+    const introParts =
+        $("#introParts");
+
+    introParts.innerHTML = "";
+
+CONFIG.websiteIntro.parts.forEach(part => {
+    const element = document.createElement("div");
+    element.className = "intro-part";
+
+    element.innerHTML = `
+        <h3>${part.title}</h3>
+        <p>${part.text}</p>
+        ${
+            part.facebook
+            ? `<a href="${part.facebook}" target="_blank" class="facebook-link">Facebook</a>`
+            : ""
+        }
+    `;
+
+    introParts.appendChild(element);
+});
+
+    websiteIntro.classList.remove("hidden");
 }
 
 
@@ -502,12 +501,16 @@ $("#continueTeacher").onclick = () => {
 
     teacherPopup.classList.add("hidden");
 
+    setTimeout(() => {
+        showWebsiteIntro();
+    }, 300);
+
 };
 
 
-$("#closeGate").onclick = () => {
+$("#startWebsite").onclick = () => {
 
-    gatekeeper.classList.add("hidden");
+    websiteIntro.classList.add("hidden");
 
 };
 
@@ -785,19 +788,68 @@ CONFIG.wishes.forEach(wish => {
 const audio =
     $("#audio");
 
-const musicPlayer =
-    $("#musicPlayer");
+const musicOverlay =
+    $("#musicOverlay");
 
-const musicName =
-    $("#musicName");
+const musicList =
+    $("#musicList");
 
-const musicCover =
-    $("#musicCover");
-
-let currentMusic = 0;
+let currentMusic = -1;
 
 
-function loadMusic(index) {
+function createMusicList() {
+
+    musicList.innerHTML = "";
+
+    CONFIG.music.forEach((music, index) => {
+
+        const item =
+            document.createElement("div");
+
+        item.className =
+            "music-item";
+
+        item.innerHTML = `
+
+            <img
+                src="${music.cover}"
+                alt=""
+            >
+
+            <div class="music-item-info">
+
+                <strong>
+                    ${music.name}
+                </strong>
+
+                <small>
+                    Bài ${index + 1}
+                </small>
+
+            </div>
+
+            <button class="music-play">
+                ▶
+            </button>
+
+        `;
+
+        item.onclick = () => {
+
+            playMusic(index);
+
+        };
+
+        musicList.appendChild(item);
+
+    });
+
+}
+
+
+function playMusic(index) {
+
+    currentMusic = index;
 
     const music =
         CONFIG.music[index];
@@ -805,102 +857,118 @@ function loadMusic(index) {
     audio.src =
         music.file;
 
-    musicName.textContent =
-        music.name;
-
-    musicCover.src =
-        music.cover;
-
-}
-
-
-function playCurrentMusic() {
-
-    loadMusic(currentMusic);
-
     audio.play()
         .catch(() => {});
 
-    musicPlayer.classList.add("show");
-
-    $("#playMusic").textContent =
-        "❚❚";
+    updateMusicList();
 
 }
 
 
-function pauseMusic() {
+function updateMusicList() {
 
-    audio.pause();
+    const items =
+        document.querySelectorAll(
+            ".music-item"
+        );
 
-    $("#playMusic").textContent =
-        "▶";
+    items.forEach((item, index) => {
+
+        const button =
+            item.querySelector(
+                ".music-play"
+            );
+
+        if (index === currentMusic) {
+
+            item.classList.add(
+                "playing"
+            );
+
+            button.textContent =
+                audio.paused
+                ? "▶"
+                : "❚❚";
+
+        } else {
+
+            item.classList.remove(
+                "playing"
+            );
+
+            button.textContent =
+                "▶";
+
+        }
+
+    });
 
 }
 
+
+/* BẤM NÚT NHẠC */
 
 $("#musicButton").onclick = () => {
 
-    musicPlayer.classList.add("show");
+    createMusicList();
 
-    if (audio.paused) {
+    musicOverlay.classList.add(
+        "show"
+    );
 
-        playCurrentMusic();
-
-    }
-
-};
-
-
-$("#playMusic").onclick = () => {
-
-    if (audio.paused) {
-
-        playCurrentMusic();
-
-    } else {
-
-        pauseMusic();
-
-    }
+    updateMusicList();
 
 };
 
 
-$("#nextMusic").onclick = () => {
-
-    currentMusic++;
-
-    if (
-        currentMusic >=
-        CONFIG.music.length
-    )
-        currentMusic = 0;
-
-    playCurrentMusic();
-
-};
-
-
-$("#prevMusic").onclick = () => {
-
-    currentMusic--;
-
-    if (currentMusic < 0)
-        currentMusic =
-            CONFIG.music.length - 1;
-
-    playCurrentMusic();
-
-};
-
+/* ĐÓNG CỬA SỔ */
 
 $("#closeMusic").onclick = () => {
 
-    musicPlayer.classList.remove("show");
+    musicOverlay.classList.remove(
+        "show"
+    );
 
 };
 
+
+/* BẤM RA NGOÀI CỬA SỔ */
+
+musicOverlay.onclick = (event) => {
+
+    if (
+        event.target ===
+        musicOverlay
+    ) {
+
+        musicOverlay.classList.remove(
+            "show"
+        );
+
+    }
+
+};
+
+
+/* PHÁT NHẠC */
+
+audio.onplay = () => {
+
+    updateMusicList();
+
+};
+
+
+/* TẠM DỪNG */
+
+audio.onpause = () => {
+
+    updateMusicList();
+
+};
+
+
+/* HẾT BÀI → TỰ CHUYỂN BÀI */
 
 audio.onended = () => {
 
@@ -909,14 +977,33 @@ audio.onended = () => {
     if (
         currentMusic >=
         CONFIG.music.length
-    )
+    ) {
+
         currentMusic = 0;
 
-    playCurrentMusic();
+    }
+
+    playMusic(currentMusic);
 
 };
 
 
+/* ESC ĐỂ ĐÓNG */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (event.key === "Escape") {
+
+            musicOverlay.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
 /* =========================
    ESC ĐỂ ĐÓNG MODAL
 ========================= */

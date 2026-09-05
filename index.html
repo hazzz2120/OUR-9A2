@@ -20,27 +20,57 @@
      MÀN HÌNH CÂU HỎI
 ========================= -->
 
-<div id="gatekeeper" class="gatekeeper">
+<!-- =========================
+     LỜI CẢM ƠN CÔ GIÁO
+========================= -->
 
-    <div class="gate-box">
+<div id="teacherPopup" class="gatekeeper">
 
-        <button id="closeGate" class="close-button">x</button>
+    <div class="gate-box teacher-popup-box">
 
         <div class="gate-image">
-            <img id="questionImage" src="assets/question.jpg">
+            <img id="teacherImage">
         </div>
 
         <p class="gate-small">
-            Một câu hỏi nhỏ về 9A2
+            Một lời cảm ơn đặc biệt
         </p>
 
-        <h2 id="questionText">
-            Tên cũ của 9A2 là gì?
-        </h2>
+        <h2 id="teacherName"></h2>
 
-        <div id="answers" class="answers"></div>
+        <p id="teacherRole" class="teacher-popup-role"></p>
 
-        <p id="gateMessage"></p>
+        <p id="teacherDescription" class="teacher-popup-description"></p>
+
+        <button id="continueTeacher" class="answer-button">
+            Tiếp tục ♥
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     GIỚI THIỆU WEBSITE
+========================= -->
+
+<div id="websiteIntro" class="gatekeeper hidden">
+
+    <div class="gate-box website-intro-box">
+
+        <p class="gate-small">
+            CHÀO MỪNG ĐẾN VỚI 9A2
+        </p>
+
+        <h2 id="introTitle">
+            </h2>
+
+        <div id="introParts" class="intro-parts"></div>
+
+        <button id="startWebsite" class="answer-button">
+            Bắt đầu ♥
+        </button>
 
     </div>
 
@@ -290,54 +320,35 @@
 
 
 <!-- =========================
-     MUSIC PLAYER
+     MUSIC PLAYLIST
 ========================= -->
 
-<div id="musicPlayer" class="music-player">
+<div id="musicOverlay" class="music-overlay">
 
-    <button id="closeMusic">
-        ×
-    </button>
+    <div id="musicPlayer" class="music-playlist">
 
-    <div class="music-info">
+        <button id="closeMusic" class="music-close">
+            ×
+        </button>
 
-        <img
-            id="musicCover"
-            src="assets/music-cover.jpg">
+        <div class="music-title">
 
-        <div>
+            <span>🎵</span>
 
-            <small>
-                ĐANG PHÁT
-            </small>
-
-            <strong id="musicName">
-                Tháng Năm Không Quên
-            </strong>
+            <div>
+                <small>VỪA NGHE NHẠC VỪA XEM LẠI KỶ NIỆM</small>
+                <h2>Thanh xuân playlist</h2>
+            </div>
 
         </div>
 
-    </div>
-
-    <div class="music-controls">
-
-        <button id="prevMusic">
-            ⏮
-        </button>
-
-        <button id="playMusic">
-            ▶
-        </button>
-
-        <button id="nextMusic">
-            ⏭
-        </button>
+        <div id="musicList" class="music-list"></div>
 
     </div>
-
-    <audio id="audio"></audio>
 
 </div>
+
+<audio id="audio"></audio>
 
 
 <!-- =========================

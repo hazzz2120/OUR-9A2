@@ -834,11 +834,40 @@ function createMusicList() {
 
         `;
 
+
+        /* BẤM VÀO CẢ BÀI */
+
         item.onclick = () => {
 
             playMusic(index);
 
         };
+
+
+        /* BẤM VÀO NÚT ▶ / ❚❚ */
+
+        const button =
+            item.querySelector(".music-play");
+
+        button.onclick = (event) => {
+
+            event.stopPropagation();
+
+            if (
+                index === currentMusic &&
+                !audio.paused
+            ) {
+
+                audio.pause();
+
+            } else {
+
+                playMusic(index);
+
+            }
+
+        };
+
 
         musicList.appendChild(item);
 
@@ -905,6 +934,17 @@ function updateMusicList() {
 
 }
 
+audio.onplay = () => {
+
+    updateMusicList();
+
+};
+
+audio.onpause = () => {
+
+    updateMusicList();
+
+};
 
 /* BẤM NÚT NHẠC */
 
@@ -930,6 +970,8 @@ $("#closeMusic").onclick = () => {
     );
 
 };
+
+
 
 
 /* BẤM RA NGOÀI CỬA SỔ */

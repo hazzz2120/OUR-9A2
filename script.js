@@ -135,7 +135,7 @@ websiteIntro: {
             role: "lớp phó kiêm học bá ( chưa có ảnh ) ",
 
             image:
-                "assets/anh/abt.jpg",
+                "assets/anh/first.jpg",
 
             hobby:
                 "kbt nữa",

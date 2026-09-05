@@ -1843,3 +1843,194 @@ footer div {
 
 }
 
+.stop-music {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 11px;
+
+    border: 1px solid #d6e6ec;
+
+    border-radius: 12px;
+
+    background: #f5fbfd;
+
+    color: #587788;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+.stop-music:hover {
+    background: #e5f4f9;
+
+    transform: translateY(-2px);
+}
+
+.expandable-wrapper {
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0.6s ease;
+}
+
+#galleryWrapper {
+    max-height: 470px;
+}
+
+#wishesWrapper {
+    max-height: 850px;
+}
+
+.fade-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 150px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0.85),
+        #fff
+    );
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.expandable-wrapper.expanded {
+    max-height: 5000px !important;
+}
+
+.expandable-wrapper.expanded .fade-bottom {
+    opacity: 0;
+}
+
+.view-more {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    background: #fff;
+    color: #47758a;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.view-more:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0,0,0,0.12);
+}
+
+/* =========================
+   LỜI NHẮN - XEM THÊM
+========================= */
+
+#wishesWrapper {
+    position: relative;
+    overflow: hidden;
+
+    max-height: 680px;
+
+    transition: max-height .7s ease;
+}
+
+
+/* lớp mờ phía dưới */
+
+#wishesWrapper .fade-bottom {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 130px;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(233, 248, 252, 0),
+        rgba(233, 248, 252, .35),
+        rgba(233, 248, 252, .8),
+        #e9f8fc
+    );
+
+    pointer-events: none;
+
+    opacity: 1;
+
+    transition: opacity .5s ease;
+}
+
+
+/* khi bấm Xem thêm */
+
+#wishesWrapper.expanded {
+    max-height: 5000px !important;
+}
+
+
+/* bỏ lớp mờ khi mở toàn bộ */
+
+#wishesWrapper.expanded .fade-bottom {
+    opacity: 0;
+}
+
+
+/* =========================
+   NÚT XEM THÊM
+========================= */
+
+#wishesMore {
+    display: block;
+
+    margin: 22px auto 0;
+
+    padding: 11px 30px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, .95);
+
+    color: #47758a;
+
+    font-family: "Be Vietnam Pro", sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 18px
+        rgba(60, 100, 120, .12);
+
+    transition: .3s ease;
+}
+
+
+#wishesMore:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 22px
+        rgba(60, 100, 120, .18);
+}
+
+
+#wishesMore:active {
+    transform: scale(.97);
+}

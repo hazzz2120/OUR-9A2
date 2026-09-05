@@ -79,31 +79,7 @@
 
 
 
-<div id="teacherPopup" class="gatekeeper hidden">
 
-    <div class="gate-box teacher-popup-box">
-
-        <div class="gate-image">
-            <img id="teacherImage">
-        </div>
-
-        <p class="gate-small">
-            Một vài lời giới thiệu và cảm ơn dành cô giáo chủ nhiệm của 9A2
-        </p>
-
-        <h2 id="teacherName"></h2>
-
-        <p id="teacherRole" class="teacher-popup-role"></p>
-
-        <p id="teacherDescription" class="teacher-popup-description"></p>
-
-        <button id="continueTeacher" class="answer-button">
-            Tiếp tục ♥
-        </button>
-
-    </div>
-
-</div>
 
 <header>
 
@@ -209,7 +185,17 @@
 
     </div>
 
-    <div id="galleryContainer" class="gallery-grid"></div>
+    <div class="expandable-wrapper" id="galleryWrapper">
+
+        <div id="galleryContainer" class="gallery-grid"></div>
+
+        <div class="fade-bottom"></div>
+
+    </div>
+
+    <button id="galleryMore" class="view-more">
+        Xem thêm ↓
+    </button>
 
 </section>
 
@@ -290,7 +276,17 @@
 
     </div>
 
+<div class="expandable-wrapper" id="wishesWrapper">
+
     <div id="wishesContainer" class="wishes-grid"></div>
+
+    <div class="fade-bottom"></div>
+
+</div>
+
+<button id="wishesMore" class="view-more">
+    Xem thêm ↓
+</button>
 
 </section>
 

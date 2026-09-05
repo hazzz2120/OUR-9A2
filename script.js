@@ -373,6 +373,7 @@ websiteIntro: {
 
     ],
 
+    
 
 
 
@@ -439,64 +440,58 @@ $("#classDescription").textContent =
     CONFIG.description;
 
 
-
-
-
-
-
-
 const teacherPopup = $("#teacherPopup");
 const websiteIntro = $("#websiteIntro");
 
 function showTeacherPopup() {
 
-    $("#teacherImage").src =
-        CONFIG.teacher.image;
-
-    $("#teacherName").textContent =
-        CONFIG.teacher.name;
-
-    $("#teacherRole").textContent =
-        CONFIG.teacher.role;
-
-    $("#teacherDescription").textContent =
-        CONFIG.teacher.description;
+    $("#teacherImage").src = CONFIG.teacher.image;
+    $("#teacherName").textContent = CONFIG.teacher.name;
+    $("#teacherRole").textContent = CONFIG.teacher.role;
+    $("#teacherDescription").textContent = CONFIG.teacher.description;
 
     teacherPopup.classList.remove("hidden");
 }
-
-showTeacherPopup();
-
 
 function showWebsiteIntro() {
 
     $("#introTitle").textContent =
         CONFIG.websiteIntro.title;
 
-    const introParts =
-        $("#introParts");
+    const introParts = $("#introParts");
 
     introParts.innerHTML = "";
 
-CONFIG.websiteIntro.parts.forEach(part => {
-    const element = document.createElement("div");
-    element.className = "intro-part";
+    CONFIG.websiteIntro.parts.forEach(part => {
 
-    element.innerHTML = `
-        <h3>${part.title}</h3>
-        <p>${part.text}</p>
-        ${
-            part.facebook
-            ? `<a href="${part.facebook}" target="_blank" class="facebook-link">Facebook</a>`
-            : ""
-        }
-    `;
+        const element = document.createElement("div");
 
-    introParts.appendChild(element);
-});
+        element.className = "intro-part";
+
+        element.innerHTML = `
+            <h3>${part.title}</h3>
+            <p>${part.text}</p>
+
+            ${
+                part.facebook
+                ? `<a href="${part.facebook}" 
+                     target="_blank" 
+                     class="facebook-link">
+                     Facebook
+                   </a>`
+                : ""
+            }
+        `;
+
+        introParts.appendChild(element);
+
+    });
 
     websiteIntro.classList.remove("hidden");
 }
+
+
+showTeacherPopup();
 
 
 $("#continueTeacher").onclick = () => {
@@ -504,7 +499,9 @@ $("#continueTeacher").onclick = () => {
     teacherPopup.classList.add("hidden");
 
     setTimeout(() => {
+
         showWebsiteIntro();
+
     }, 300);
 
 };
@@ -782,6 +779,62 @@ CONFIG.wishes.forEach(wish => {
 
 });
 
+/* =========================
+   XEM THÊM
+========================= */
+
+
+/* NHỮNG KHOẢNH KHẮC */
+
+const galleryWrapper = $("#galleryWrapper");
+const galleryMore = $("#galleryMore");
+
+galleryMore.onclick = () => {
+    galleryWrapper.classList.toggle("expanded");
+
+    if (galleryWrapper.classList.contains("expanded")) {
+        galleryMore.textContent = "Thu gọn ↑";
+    } else {
+        galleryMore.textContent = "Xem thêm ↓";
+
+        galleryWrapper.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+};
+
+
+/* NHỮNG LỜI NHẮN */
+
+const wishesWrapper = $("#wishesWrapper");
+const wishesMore = $("#wishesMore");
+
+wishesMore.onclick = () => {
+
+    const expanded =
+        wishesWrapper.classList.toggle("expanded");
+
+    if (expanded) {
+
+        wishesMore.textContent =
+            "Thu gọn ↑";
+
+    } else {
+
+        wishesMore.textContent =
+            "Xem thêm ↓";
+
+        document.querySelector("#wishes")
+            .scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+    }
+
+};
+
 
 /* =========================
    MUSIC
@@ -994,22 +1047,7 @@ musicOverlay.onclick = (event) => {
 };
 
 
-/* PHÁT NHẠC */
 
-audio.onplay = () => {
-
-    updateMusicList();
-
-};
-
-
-/* TẠM DỪNG */
-
-audio.onpause = () => {
-
-    updateMusicList();
-
-};
 
 
 /* HẾT BÀI → TỰ CHUYỂN BÀI */
@@ -1070,3 +1108,4 @@ document.addEventListener(
 
     }
 );
+

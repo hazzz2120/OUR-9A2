@@ -132,7 +132,7 @@ websiteIntro: {
 
         {
             name: "Đinh Hoàng Ngọc Hà",
-            role: "lớp phó kiêm học bá ( chưa có ảnh ) ",
+            role: "lớp phó kiêm học bá ",
 
             image:
                 "assets/anh/first.jpg",

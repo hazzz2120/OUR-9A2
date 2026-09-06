@@ -158,7 +158,15 @@ websiteIntro: {
                 "tương lai tỉ phú."
         },
 
+        {
+            name: "Nguyễn Phúc Khánh Nam",
+            role: "Thành viên lớp",
 
+            image: "assets/anh/nam.jpg",
+
+            hobby: "đạp xe",
+            message: "mê xe hơn mê gái",
+        }
 
     ],
 

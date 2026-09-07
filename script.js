@@ -621,7 +621,9 @@ const galleryContainer =
 let currentImage = 0;
 
 
-CONFIG.gallery.forEach((image, index) => {
+const galleryImages = CONFIG.gallery.filter(Boolean);
+
+galleryImages.forEach((image, index) => {
 
     const item =
         document.createElement("div");
@@ -652,10 +654,16 @@ const imageModal =
     $("#imageModal");
 
 
+const saveImage = $("#saveImage");
+
 function showImage() {
 
-    $("#largeImage").src =
-        CONFIG.gallery[currentImage];
+    const image = galleryImages[currentImage];
+
+    $("#largeImage").src = image;
+
+    saveImage.href = image;
+    saveImage.download = "ky-niem-9a2.jpg";
 
     imageModal.classList.add("show");
 
@@ -676,8 +684,8 @@ $("#previousImage").onclick = event => {
     currentImage--;
 
     if (currentImage < 0)
-        currentImage =
-            CONFIG.gallery.length - 1;
+    currentImage =
+        galleryImages.length - 1;
 
     showImage();
 
@@ -692,9 +700,9 @@ $("#nextImage").onclick = event => {
 
     if (
         currentImage >=
-        CONFIG.gallery.length
+        galleryImages.length
     )
-        currentImage = 0;
+    currentImage = 0;
 
     showImage();
 

@@ -13,6 +13,18 @@
             background: #f5f7fb;
             color: #18212f;
         }
+        .ip-location {
+        line-height: 1.4;
+        }
+
+        .ip-location small {
+        color: #687386;
+        }
+
+        .loading-location {
+            color: #999;
+            font-size: 13px;
+        }
         .wrap { max-width: 1200px; margin: auto; }
         h1 { margin-bottom: 8px; }
         .muted { color: #687386; }
@@ -100,6 +112,8 @@
                 <thead>
                     <tr>
                         <th>IP</th>
+                        <th>Khu vực</th>
+                        <th>Nhà mạng</th>
                         <th>Số lần vào</th>
                         <th>Lần đầu</th>
                         <th>Lần cuối</th>
@@ -174,16 +188,30 @@ async function loadStats() {
                 <tr><td colspan="4">Chưa có dữ liệu.</td></tr>
             `;
 
-        document.querySelector("#recentBody").innerHTML =
-            data.recentVisits.map(visit => `
-                <tr>
-                    <td>${escapeHtml(visit.ip)}</td>
-                    <td>${formatDate(visit.visited_at)}</td>
-                    <td>${escapeHtml(visit.path)}</td>
-                </tr>
-            `).join("") || `
-                <tr><td colspan="3">Chưa có dữ liệu.</td></tr>
-            `;
+document.querySelector("#visitorsBody").innerHTML =
+    data.visitors.map(visitor => `
+        <tr>
+            <td>${escapeHtml(visitor.ip)}</td>
+
+            <td id="location-${encodeURIComponent(visitor.ip)}">
+                <span class="loading-location">Đang tra...</span>
+            </td>
+
+            <td id="isp-${encodeURIComponent(visitor.ip)}">
+                <span class="loading-location">Đang tra...</span>
+            </td>
+
+            <td>${visitor.visit_count}</td>
+            <td>${formatDate(visitor.first_seen)}</td>
+            <td>${formatDate(visitor.last_seen)}</td>
+        </tr>
+    `).join("") || `
+        <tr><td colspan="6">Chưa có dữ liệu.</td></tr>
+    `;
+
+data.visitors.forEach(visitor => {
+    lookupIP(visitor.ip);
+});
 
     } catch (error) {
         errorBox.textContent = error.message;
@@ -201,6 +229,37 @@ function escapeHtml(value) {
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
+}
+
+async function lookupIP(ip) {
+    const key = encodeURIComponent(ip);
+
+    try {
+        const response = await fetch(
+            `https://ipapi.co/${encodeURIComponent(ip)}/json/`
+        );
+
+        const data = await response.json();
+
+        const location = [
+            data.city,
+            data.region,
+            data.country_name
+        ].filter(Boolean).join(", ");
+
+        document.querySelector(`#location-${key}`).innerHTML =
+            escapeHtml(location || "Không xác định");
+
+        document.querySelector(`#isp-${key}`).innerHTML =
+            escapeHtml(data.org || data.asn || "Không xác định");
+
+    } catch (error) {
+        document.querySelector(`#location-${key}`).textContent =
+            "Không tra được";
+
+        document.querySelector(`#isp-${key}`).textContent =
+            "Không tra được";
+    }
 }
 
 loginButton.onclick = async () => {

@@ -108,6 +108,81 @@
 
         <section class="panel">
             <h2>IP truy cập nhiều nhất</h2>
+            <section class="panel">
+    <h2>🛡️ Bảo mật website</h2>
+
+    <div id="securityStatus"
+         style="margin-bottom:20px;">
+        Đang tải...
+    </div>
+
+    <h3>⚠️ IP đáng ngờ</h3>
+
+    <div style="overflow-x:auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>IP</th>
+                    <th>Mức độ</th>
+                    <th>Request</th>
+                    <th>Thời gian</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+
+            <tbody id="securityEventsBody"></tbody>
+        </table>
+    </div>
+
+    <h3 style="margin-top:30px;">
+        🚫 IP đang bị ban
+    </h3>
+
+    <div style="overflow-x:auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>IP</th>
+                    <th>Lý do</th>
+                    <th>Ban lúc</th>
+                    <th>Hết hạn</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+
+            <tbody id="bannedIPsBody"></tbody>
+        </table>
+    </div>
+
+    <h3 style="margin-top:30px;">
+        ⚙️ Cấu hình bảo mật
+    </h3>
+
+    <label>
+        Cảnh báo:
+        <input id="warnThreshold"
+               type="number"
+               min="1">
+    </label>
+
+    <label>
+        Cảnh báo nghiêm trọng:
+        <input id="criticalThreshold"
+               type="number"
+               min="1">
+    </label>
+
+    <label>
+        Tự động ban:
+        <input id="autoBanThreshold"
+               type="number"
+               min="1">
+    </label>
+
+    <button id="saveSecurityConfig">
+        Lưu cấu hình
+    </button>
+</section>
             <table>
                 <thead>
                     <tr>
@@ -327,6 +402,364 @@ async function lookupIP(ip, index) {
     }
 }
 
+async function loadSecurity() {
+
+    const response =
+        await fetch("/api/security", {
+            headers: {
+                Authorization:
+                    `Bearer ${adminToken}`
+            }
+        });
+
+    const data =
+        await response.json();
+
+    if (!response.ok || !data.ok) {
+        throw new Error(
+            data.error ||
+            "Không thể tải bảo mật."
+        );
+    }
+
+
+    // =========================
+    // CẤU HÌNH
+    // =========================
+
+    document.querySelector(
+        "#warnThreshold"
+    ).value =
+        data.config.warnThreshold;
+
+    document.querySelector(
+        "#criticalThreshold"
+    ).value =
+        data.config.criticalThreshold;
+
+    document.querySelector(
+        "#autoBanThreshold"
+    ).value =
+        data.config.autoBanThreshold;
+
+
+    // =========================
+    // TRẠNG THÁI
+    // =========================
+
+    const bannedCount =
+        data.bannedIPs.length;
+
+    const criticalCount =
+        data.securityEvents.filter(
+            x => x.event_type === "CRITICAL"
+        ).length;
+
+    const warningCount =
+        data.securityEvents.filter(
+            x => x.event_type === "WARNING"
+        ).length;
+
+    document.querySelector(
+        "#securityStatus"
+    ).innerHTML = `
+        🟢 IP đang bị ban:
+        <strong>${bannedCount}</strong>
+        &nbsp;&nbsp;
+
+        ⚠️ Cảnh báo:
+        <strong>${warningCount}</strong>
+        &nbsp;&nbsp;
+
+        🔴 Nghiêm trọng:
+        <strong>${criticalCount}</strong>
+    `;
+
+
+    // =========================
+    // SECURITY EVENTS
+    // =========================
+
+    const eventsBody =
+        document.querySelector(
+            "#securityEventsBody"
+        );
+
+    eventsBody.innerHTML =
+        data.securityEvents
+        .map(event => {
+
+            const level =
+                event.event_type === "CRITICAL"
+                    ? "🔴 CRITICAL"
+                    : "⚠️ WARNING";
+
+            return `
+                <tr>
+                    <td>
+                        ${escapeHtml(event.ip)}
+                    </td>
+
+                    <td>
+                        ${level}
+                    </td>
+
+                    <td>
+                        ${event.request_count}
+                        / ${event.window_seconds}s
+                    </td>
+
+                    <td>
+                        ${formatDate(
+                            event.detected_at
+                        )}
+                    </td>
+
+                    <td>
+                        <button
+                            onclick="banIP(
+                                '${escapeJs(event.ip)}',
+                                '30',
+                                false
+                            )">
+                            Ban 30 phút
+                        </button>
+
+                        <button
+                            onclick="banIP(
+                                '${escapeJs(event.ip)}',
+                                '0',
+                                true
+                            )">
+                            Ban vĩnh viễn
+                        </button>
+                    </td>
+                </tr>
+            `;
+        })
+        .join("") ||
+        `
+            <tr>
+                <td colspan="5">
+                    Không có cảnh báo.
+                </td>
+            </tr>
+        `;
+
+
+    // =========================
+    // BANNED IPS
+    // =========================
+
+    const bannedBody =
+        document.querySelector(
+            "#bannedIPsBody"
+        );
+
+    bannedBody.innerHTML =
+        data.bannedIPs
+        .map(item => {
+
+            const expires =
+                item.permanent
+                    ? "Vĩnh viễn"
+                    : formatDate(
+                        item.expires_at
+                    );
+
+            return `
+                <tr>
+                    <td>
+                        ${escapeHtml(item.ip)}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(item.reason)}
+                    </td>
+
+                    <td>
+                        ${formatDate(
+                            item.banned_at
+                        )}
+                    </td>
+
+                    <td>
+                        ${expires}
+                    </td>
+
+                    <td>
+                        <button
+                            onclick="unbanIP(
+                                '${escapeJs(item.ip)}'
+                            )">
+                            Bỏ ban
+                        </button>
+                    </td>
+                </tr>
+            `;
+        })
+        .join("") ||
+        `
+            <tr>
+                <td colspan="5">
+                    Không có IP bị ban.
+                </td>
+            </tr>
+        `;
+}
+
+
+function escapeJs(value) {
+    return String(value ?? "")
+        .replaceAll("\\", "\\\\")
+        .replaceAll("'", "\\'");
+}
+
+
+async function banIP(
+    ip,
+    durationMinutes,
+    permanent
+) {
+
+    const reason =
+        permanent
+            ? "Admin ban vĩnh viễn"
+            : `Admin ban ${durationMinutes} phút`;
+
+    const response =
+        await fetch("/api/security", {
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                    "application/json",
+
+                Authorization:
+                    `Bearer ${adminToken}`
+            },
+
+            body: JSON.stringify({
+                action: "ban",
+                ip,
+                reason,
+                durationMinutes:
+                    Number(durationMinutes),
+                permanent
+            })
+        });
+
+    const data =
+        await response.json();
+
+    if (!response.ok || !data.ok) {
+        alert(
+            data.error ||
+            "Không thể ban IP."
+        );
+        return;
+    }
+
+    await loadSecurity();
+}
+
+
+async function unbanIP(ip) {
+
+    const response =
+        await fetch("/api/security", {
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                    "application/json",
+
+                Authorization:
+                    `Bearer ${adminToken}`
+            },
+
+            body: JSON.stringify({
+                action: "unban",
+                ip
+            })
+        });
+
+    const data =
+        await response.json();
+
+    if (!response.ok || !data.ok) {
+        alert(
+            data.error ||
+            "Không thể bỏ ban."
+        );
+        return;
+    }
+
+    await loadSecurity();
+}
+
+
+document.querySelector(
+    "#saveSecurityConfig"
+).onclick = async () => {
+
+    const warnThreshold =
+        Number(
+            document.querySelector(
+                "#warnThreshold"
+            ).value
+        );
+
+    const criticalThreshold =
+        Number(
+            document.querySelector(
+                "#criticalThreshold"
+            ).value
+        );
+
+    const autoBanThreshold =
+        Number(
+            document.querySelector(
+                "#autoBanThreshold"
+            ).value
+        );
+
+    const response =
+        await fetch("/api/security", {
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                    "application/json",
+
+                Authorization:
+                    `Bearer ${adminToken}`
+            },
+
+            body: JSON.stringify({
+                action: "config",
+                warnThreshold,
+                criticalThreshold,
+                autoBanThreshold
+            })
+        });
+
+    const data =
+        await response.json();
+
+    if (!response.ok || !data.ok) {
+        alert(
+            data.error ||
+            "Không thể lưu cấu hình."
+        );
+        return;
+    }
+
+    alert("Đã lưu cấu hình.");
+
+    await loadSecurity();
+};
+
 loginButton.onclick = async () => {
     adminToken = tokenInput.value.trim();
 
@@ -336,6 +769,7 @@ loginButton.onclick = async () => {
     }
 
     await loadStats();
+    await loadSecurity();
 
     if (!errorBox.textContent) {
         loginBox.classList.add("hidden");
@@ -343,7 +777,10 @@ loginButton.onclick = async () => {
     }
 };
 
-refreshButton.onclick = loadStats;
+refreshButton.onclick = async () => {
+    await loadStats();
+    await loadSecurity();
+};
 
 tokenInput.addEventListener("keydown", event => {
     if (event.key === "Enter") loginButton.click();

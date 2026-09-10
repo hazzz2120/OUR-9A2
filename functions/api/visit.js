@@ -279,58 +279,64 @@ export async function onRequestPost(context) {
         // 200+ → CẢNH BÁO NGHIÊM TRỌNG
         // =========================
 
-        if (requestCount >= criticalThreshold) {
+        const recentEvent = await db
+    .prepare(`
+        SELECT id
+        FROM security_events
+        WHERE ip = ?
+        AND detected_at >= ?
+        LIMIT 1
+    `)
+    .bind(ip, windowStart)
+    .first();
 
-            await db
-                .prepare(`
-                    INSERT INTO security_events (
-                        ip,
-                        event_type,
-                        request_count,
-                        window_seconds,
-                        detected_at
-                    )
-                    VALUES (?, ?, ?, ?, ?)
-                `)
-                .bind(
+if (!recentEvent) {
+
+    if (requestCount >= criticalThreshold) {
+
+        await db
+            .prepare(`
+                INSERT INTO security_events (
                     ip,
-                    "CRITICAL",
-                    requestCount,
-                    10,
-                    nowISO
+                    event_type,
+                    request_count,
+                    window_seconds,
+                    detected_at
                 )
-                .run();
+                VALUES (?, ?, ?, ?, ?)
+            `)
+            .bind(
+                ip,
+                "CRITICAL",
+                requestCount,
+                10,
+                nowISO
+            )
+            .run();
 
-        }
+    } else if (requestCount >= warnThreshold) {
 
-        // =========================
-        // 30+ → CẢNH BÁO
-        // =========================
-
-        else if (requestCount >= warnThreshold) {
-
-            await db
-                .prepare(`
-                    INSERT INTO security_events (
-                        ip,
-                        event_type,
-                        request_count,
-                        window_seconds,
-                        detected_at
-                    )
-                    VALUES (?, ?, ?, ?, ?)
-                `)
-                .bind(
+        await db
+            .prepare(`
+                INSERT INTO security_events (
                     ip,
-                    "WARNING",
-                    requestCount,
-                    10,
-                    nowISO
+                    event_type,
+                    request_count,
+                    window_seconds,
+                    detected_at
                 )
-                .run();
-
-        }
-
+                VALUES (?, ?, ?, ?, ?)
+            `)
+            .bind(
+                ip,
+                "WARNING",
+                requestCount,
+                10,
+                nowISO
+            )
+            .run();
+    }
+}
 
         return Response.json(
             {

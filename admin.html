@@ -170,51 +170,82 @@ async function loadStats() {
             throw new Error(data.error || "Không thể tải thống kê.");
         }
 
+        // =========================
+        // TỔNG SỐ
+        // =========================
+
         document.querySelector("#totalVisits").textContent =
             data.totalVisits.toLocaleString("vi-VN");
 
         document.querySelector("#totalIPs").textContent =
             data.totalUniqueIPs.toLocaleString("vi-VN");
 
+
+        // =========================
+        // IP TRUY CẬP NHIỀU NHẤT
+        // =========================
+
         document.querySelector("#visitorsBody").innerHTML =
-            data.visitors.map(visitor => `
+            data.visitors.map((visitor, index) => `
                 <tr>
                     <td>${escapeHtml(visitor.ip)}</td>
+
+                    <td id="location-${index}">
+                        <span class="loading-location">
+                            Đang tra...
+                        </span>
+                    </td>
+
+                    <td id="isp-${index}">
+                        <span class="loading-location">
+                            Đang tra...
+                        </span>
+                    </td>
+
                     <td>${visitor.visit_count}</td>
+
                     <td>${formatDate(visitor.first_seen)}</td>
+
                     <td>${formatDate(visitor.last_seen)}</td>
                 </tr>
             `).join("") || `
-                <tr><td colspan="4">Chưa có dữ liệu.</td></tr>
+                <tr>
+                    <td colspan="6">Chưa có dữ liệu.</td>
+                </tr>
             `;
 
-document.querySelector("#visitorsBody").innerHTML =
-    data.visitors.map(visitor => `
-        <tr>
-            <td>${escapeHtml(visitor.ip)}</td>
 
-            <td id="location-${encodeURIComponent(visitor.ip)}">
-                <span class="loading-location">Đang tra...</span>
-            </td>
+        // =========================
+        // 100 LƯỢT GẦN NHẤT
+        // =========================
 
-            <td id="isp-${encodeURIComponent(visitor.ip)}">
-                <span class="loading-location">Đang tra...</span>
-            </td>
+        document.querySelector("#recentBody").innerHTML =
+            data.recentVisits.map(visit => `
+                <tr>
+                    <td>${escapeHtml(visit.ip)}</td>
 
-            <td>${visitor.visit_count}</td>
-            <td>${formatDate(visitor.first_seen)}</td>
-            <td>${formatDate(visitor.last_seen)}</td>
-        </tr>
-    `).join("") || `
-        <tr><td colspan="6">Chưa có dữ liệu.</td></tr>
-    `;
+                    <td>${formatDate(visit.visited_at)}</td>
 
-data.visitors.forEach(visitor => {
-    lookupIP(visitor.ip);
-});
+                    <td>${escapeHtml(visit.path)}</td>
+                </tr>
+            `).join("") || `
+                <tr>
+                    <td colspan="3">Chưa có dữ liệu.</td>
+                </tr>
+            `;
+
+
+        // =========================
+        // TRA THÔNG TIN IP
+        // =========================
+
+        data.visitors.forEach((visitor, index) => {
+            lookupIP(visitor.ip, index);
+        });
 
     } catch (error) {
         errorBox.textContent = error.message;
+
         if (error.message.includes("quyền")) {
             dashboard.classList.add("hidden");
             loginBox.classList.remove("hidden");
@@ -231,34 +262,68 @@ function escapeHtml(value) {
         .replaceAll("'", "&#039;");
 }
 
-async function lookupIP(ip) {
-    const key = encodeURIComponent(ip);
+async function lookupIP(ip, index) {
+    const locationBox =
+        document.querySelector(`#location-${index}`);
+
+    const ispBox =
+        document.querySelector(`#isp-${index}`);
 
     try {
+        const controller = new AbortController();
+
+        const timeout = setTimeout(() => {
+            controller.abort();
+        }, 8000);
+
         const response = await fetch(
-            `https://ipapi.co/${encodeURIComponent(ip)}/json/`
+            `/api/ipinfo?ip=${encodeURIComponent(ip)}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${adminToken}`
+                },
+                signal: controller.signal
+            }
         );
+
+        clearTimeout(timeout);
 
         const data = await response.json();
 
-        const location = [
+        if (!response.ok || data.error) {
+            throw new Error("Không tra được IP");
+        }
+
+        const locationParts = [
             data.city,
             data.region,
             data.country_name
-        ].filter(Boolean).join(", ");
+        ].filter(Boolean);
 
-        document.querySelector(`#location-${key}`).innerHTML =
+        const location =
+            [...new Set(locationParts)].join(", ");
+
+        locationBox.innerHTML =
             escapeHtml(location || "Không xác định");
 
-        document.querySelector(`#isp-${key}`).innerHTML =
-            escapeHtml(data.org || data.asn || "Không xác định");
+        ispBox.innerHTML =
+            escapeHtml(
+                data.org ||
+                data.asn ||
+                "Không xác định"
+            );
 
     } catch (error) {
-        document.querySelector(`#location-${key}`).textContent =
-            "Không tra được";
 
-        document.querySelector(`#isp-${key}`).textContent =
-            "Không tra được";
+        locationBox.innerHTML =
+            `<span class="loading-location">
+                Không tra được
+            </span>`;
+
+        ispBox.innerHTML =
+            `<span class="loading-location">
+                Không tra được
+            </span>`;
     }
 }
 

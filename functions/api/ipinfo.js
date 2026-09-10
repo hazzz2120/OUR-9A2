@@ -38,21 +38,68 @@ export async function onRequestGet(context) {
     }
 
     try {
-        const response = await fetch(
-            `https://ipapi.co/${encodeURIComponent(ip)}/json/`,
+        const upstream = await fetch(
+            `https://api.ipapi.is/?q=${encodeURIComponent(ip)}`,
             {
+                method: "GET",
                 headers: {
-                    "User-Agent": "9A2-Analytics"
+                    "Accept": "application/json"
                 }
             }
         );
 
-        const data = await response.json();
+        const text = await upstream.text();
+
+        let data;
+
+        try {
+            data = JSON.parse(text);
+        } catch {
+            return new Response(
+                JSON.stringify({
+                    ok: false,
+                    error: "API IP trả dữ liệu không hợp lệ.",
+                    upstreamStatus: upstream.status
+                }),
+                {
+                    status: 502,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Cache-Control": "no-store"
+                    }
+                }
+            );
+        }
+
+        if (!upstream.ok) {
+            return new Response(
+                JSON.stringify({
+                    ok: false,
+                    error: data.error || "API IP từ chối yêu cầu.",
+                    upstreamStatus: upstream.status
+                }),
+                {
+                    status: 502,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Cache-Control": "no-store"
+                    }
+                }
+            );
+        }
 
         return new Response(
-            JSON.stringify(data),
+            JSON.stringify({
+                ok: true,
+                ip: data.ip,
+                city: data.city,
+                region: data.region,
+                country: data.country,
+                company: data.company,
+                asn: data.asn
+            }),
             {
-                status: response.ok ? 200 : response.status,
+                status: 200,
                 headers: {
                     "Content-Type": "application/json",
                     "Cache-Control": "no-store"
@@ -64,7 +111,8 @@ export async function onRequestGet(context) {
         return new Response(
             JSON.stringify({
                 ok: false,
-                error: "Không thể tra IP."
+                error: "Cloudflare không thể kết nối API IP.",
+                detail: error.message
             }),
             {
                 status: 500,

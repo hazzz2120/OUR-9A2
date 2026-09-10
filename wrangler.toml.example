@@ -1,0 +1,13 @@
+# Đổi tên file này thành wrangler.toml nếu bạn muốn dùng Wrangler CLI.
+# Thay các giá trị <...> bằng thông tin D1 thật của bạn.
+
+name = "our-9a2"
+compatibility_date = "2026-09-10"
+pages_build_output_dir = "."
+
+[[d1_databases]]
+binding = "DB"
+database_name = "our-9a2-analytics"
+database_id = "<D1_DATABASE_ID>"
+preview_database_id = "DB"
+migrations_dir = "migrations"

@@ -30,22 +30,49 @@ export async function onRequestGet(context) {
             {
                 status: 400,
                 headers: {
-                    "Content-Type": "application/json",
-                    "Cache-Control": "no-store"
+                    "Content-Type": "application/json"
                 }
             }
         );
     }
 
+    const db = context.env.DB;
+
     try {
-        const upstream = await fetch(
-            `https://api.ipapi.is/?q=${encodeURIComponent(ip)}`,
-            {
-                method: "GET",
-                headers: {
-                    "Accept": "application/json"
+     
+        const cached = await db
+            .prepare(`
+                SELECT ip, city, region, country, company, asn
+                FROM ip_geo
+                WHERE ip = ?
+            `)
+            .bind(ip)
+            .first();
+
+        if (cached) {
+            return new Response(
+                JSON.stringify({
+                    ok: true,
+                    cached: true,
+                    ip: cached.ip,
+                    city: cached.city,
+                    region: cached.region,
+                    country: cached.country,
+                    company: cached.company,
+                    asn: cached.asn
+                }),
+                {
+                    status: 200,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Cache-Control": "no-store"
+                    }
                 }
-            }
+            );
+        }
+
+        const upstream = await fetch(
+            `https://api.ipapi.is/?q=${encodeURIComponent(ip)}`
         );
 
         const text = await upstream.text();
@@ -64,8 +91,7 @@ export async function onRequestGet(context) {
                 {
                     status: 502,
                     headers: {
-                        "Content-Type": "application/json",
-                        "Cache-Control": "no-store"
+                        "Content-Type": "application/json"
                     }
                 }
             );
@@ -81,22 +107,46 @@ export async function onRequestGet(context) {
                 {
                     status: 502,
                     headers: {
-                        "Content-Type": "application/json",
-                        "Cache-Control": "no-store"
+                        "Content-Type": "application/json"
                     }
                 }
             );
         }
 
+        const city = data.city || null;
+        const region = data.region || null;
+        const country = data.country || null;
+        const company = data.company || null;
+        const asn = data.asn || null;
+
+        await db
+            .prepare(`
+                INSERT OR REPLACE INTO ip_geo
+                (ip, city, region, country, company, asn, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            `)
+            .bind(
+                ip,
+                city,
+                region,
+                country,
+                company,
+                asn,
+                new Date().toISOString()
+            )
+            .run();
+
+        
         return new Response(
             JSON.stringify({
                 ok: true,
-                ip: data.ip,
-                city: data.city,
-                region: data.region,
-                country: data.country,
-                company: data.company,
-                asn: data.asn
+                cached: false,
+                ip: ip,
+                city: city,
+                region: region,
+                country: country,
+                company: company,
+                asn: asn
             }),
             {
                 status: 200,
@@ -111,14 +161,13 @@ export async function onRequestGet(context) {
         return new Response(
             JSON.stringify({
                 ok: false,
-                error: "Cloudflare không thể kết nối API IP.",
+                error: "Lỗi xử lý IP.",
                 detail: error.message
             }),
             {
                 status: 500,
                 headers: {
-                    "Content-Type": "application/json",
-                    "Cache-Control": "no-store"
+                    "Content-Type": "application/json"
                 }
             }
         );

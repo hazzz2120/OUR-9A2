@@ -35,10 +35,6 @@ const CONFIG = {
 },
 
 
-/* =========================
-   GIỚI THIỆU WEBSITE
-========================= */
-
 websiteIntro: {
 
     title:
@@ -183,7 +179,7 @@ websiteIntro: {
     ],
 
 
-    /* ẢNH KỶ NIỆM */
+    
 
     gallery: [
 
@@ -212,7 +208,6 @@ websiteIntro: {
     ],
 
 
-    /* DÒNG THỜI GIAN */
 
     timeline: [
 
@@ -268,7 +263,6 @@ websiteIntro: {
     ],
 
 
-    /* LỜI NHẮN */
 
     wishes: [
 
@@ -571,10 +565,6 @@ CONFIG.members.forEach((member, index) => {
 });
 
 
-/* =========================
-   MEMBER MODAL
-========================= */
-
 const memberModal =
     $("#memberModal");
 
@@ -622,10 +612,6 @@ memberModal.onclick = event => {
 
 };
 
-
-/* =========================
-   GALLERY
-========================= */
 
 const galleryContainer =
     $("#galleryContainer");
@@ -732,10 +718,6 @@ imageModal.onclick = event => {
 };
 
 
-/* =========================
-   TIMELINE
-========================= */
-
 const timelineContainer =
     $("#timelineContainer");
 
@@ -775,9 +757,7 @@ CONFIG.timeline.forEach(item => {
 });
 
 
-/* =========================
-   WISHES
-========================= */
+
 
 const wishesContainer =
     $("#wishesContainer");
@@ -807,12 +787,7 @@ CONFIG.wishes.forEach(wish => {
 
 });
 
-/* =========================
-   XEM THÊM
-========================= */
 
-
-/* NHỮNG KHOẢNH KHẮC */
 
 const galleryWrapper = $("#galleryWrapper");
 const galleryMore = $("#galleryMore");
@@ -833,7 +808,7 @@ galleryMore.onclick = () => {
 };
 
 
-/* NHỮNG LỜI NHẮN */
+
 
 const wishesWrapper = $("#wishesWrapper");
 const wishesMore = $("#wishesMore");
@@ -864,9 +839,7 @@ wishesMore.onclick = () => {
 };
 
 
-/* =========================
-   MUSIC
-========================= */
+
 
 const audio =
     $("#audio");
@@ -1029,7 +1002,7 @@ audio.onpause = () => {
 
 };
 
-/* BẤM NÚT NHẠC */
+
 
 $("#musicButton").onclick = () => {
 
@@ -1098,7 +1071,7 @@ audio.onended = () => {
 };
 
 
-/* ESC ĐỂ ĐÓNG */
+
 
 document.addEventListener(
     "keydown",
@@ -1114,9 +1087,6 @@ document.addEventListener(
 
     }
 );
-/* =========================
-   ESC ĐỂ ĐÓNG MODAL
-========================= */
 
 document.addEventListener(
     "keydown",

@@ -58,14 +58,26 @@ export async function onRequestGet(context) {
             .all();
 
         return Response.json({
-            ok: true,
-            totalVisits: Number(totals?.total_visits || 0),
-            totalUniqueIPs: Number(totals?.total_unique_ips || 0),
-            visitors: visitors.results || [],
-            recentVisits: recentVisits.results || []
-        }, {
-            headers: { "Cache-Control": "no-store" }
-        });
+    ok: true,
+
+    totalVisits: Number(
+        totals?.total_visits || 0
+    ),
+
+    totalUniqueIPs: Number(
+        totals?.total_unique_ips || 0
+    ),
+
+    visitors:
+        visitors.results || [],
+
+    recentVisits:
+        recentVisits.results || []
+}, {
+    headers: {
+        "Cache-Control": "no-store"
+    }
+});
     } catch (error) {
         console.error("Stats error:", error);
 

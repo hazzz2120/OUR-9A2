@@ -385,6 +385,49 @@ if (action === "delete_all_events") {
     });
 }
 
+// =========================
+// XÓA LỊCH SỬ LƯỢT TRUY CẬP
+// =========================
+
+if (action === "delete_visits") {
+
+    await db
+        .prepare(`
+            DELETE FROM visits
+        `)
+        .run();
+
+    return Response.json({
+        ok: true,
+        action: "delete_visits"
+    });
+}
+
+
+// =========================
+// XÓA TOÀN BỘ THỐNG KÊ
+// =========================
+
+if (action === "delete_statistics") {
+
+    await db
+        .prepare(`
+            DELETE FROM visits
+        `)
+        .run();
+
+    await db
+        .prepare(`
+            DELETE FROM visitors
+        `)
+        .run();
+
+    return Response.json({
+        ok: true,
+        action: "delete_statistics"
+    });
+}
+
     return Response.json(
         {
             ok: false,

@@ -106,6 +106,22 @@
             </div>
         </section>
 
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px;">
+
+    <button
+        id="deleteVisitsButton"
+        style="width:auto;">
+        🗑️ Xóa lịch sử lượt truy cập
+    </button>
+
+    <button
+        id="deleteStatisticsButton"
+        style="width:auto;">
+        ⚠️ Xóa toàn bộ thống kê
+    </button>
+
+</div>
+
         <section class="panel">
             <h2>IP truy cập nhiều nhất</h2>
             <section class="panel">
@@ -827,6 +843,66 @@ document.querySelector("#deleteAllEvents").onclick =
 
         await loadSecurity();
     };
+
+    async function deleteData(action, message) {
+
+    if (!confirm(message)) {
+        return;
+    }
+
+    const response = await fetch(
+        "/api/security",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization:
+                    `Bearer ${adminToken}`
+            },
+            body: JSON.stringify({
+                action
+            })
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok || !data.ok) {
+        alert(
+            data.error ||
+            "Không thể xóa dữ liệu."
+        );
+        return;
+    }
+
+    alert("Đã xóa thành công.");
+
+    await loadStats();
+    await loadSecurity();
+}
+
+
+document.querySelector(
+    "#deleteVisitsButton"
+).onclick = () => {
+
+    deleteData(
+        "delete_visits",
+        "Xóa toàn bộ lịch sử lượt truy cập?"
+    );
+};
+
+
+document.querySelector(
+    "#deleteStatisticsButton"
+).onclick = () => {
+
+    deleteData(
+        "delete_statistics",
+        "XÓA TOÀN BỘ THỐNG KÊ? Hành động này không thể hoàn tác."
+    );
+};
+
     
 loginButton.onclick = async () => {
     adminToken = tokenInput.value.trim();

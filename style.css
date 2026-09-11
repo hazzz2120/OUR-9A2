@@ -622,10 +622,6 @@ footer div {
 
 
 
-/* =========================
-   MUSIC PLAYLIST
-========================= */
-
 .music-player {
     position: fixed;
 
@@ -1544,9 +1540,6 @@ footer div {
 }
 
 
-/* =========================
-   MUSIC PLAYLIST WINDOW
-========================= */
 
 .music-overlay {
     position: fixed;
@@ -1932,9 +1925,6 @@ footer div {
     box-shadow: 0 7px 20px rgba(0,0,0,0.12);
 }
 
-/* =========================
-   LỜI NHẮN - XEM THÊM
-========================= */
 
 #wishesWrapper {
     position: relative;
@@ -1945,8 +1935,6 @@ footer div {
     transition: max-height .7s ease;
 }
 
-
-/* lớp mờ phía dưới */
 
 #wishesWrapper .fade-bottom {
     position: absolute;
@@ -1973,23 +1961,17 @@ footer div {
 }
 
 
-/* khi bấm Xem thêm */
-
 #wishesWrapper.expanded {
     max-height: 5000px !important;
 }
 
 
-/* bỏ lớp mờ khi mở toàn bộ */
 
 #wishesWrapper.expanded .fade-bottom {
     opacity: 0;
 }
 
 
-/* =========================
-   NÚT XEM THÊM
-========================= */
 
 #wishesMore {
     display: block;
@@ -2035,9 +2017,6 @@ footer div {
     transform: scale(.97);
 }
 
-/* =========================
-   POPUP MOBILE
-========================= */
 
 @media (max-width: 500px) {
 

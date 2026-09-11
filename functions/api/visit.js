@@ -183,6 +183,9 @@ export async function onRequestPost(context) {
                 now.getTime() - 10000
             ).toISOString();
 
+        const windowKey =
+        Math.floor(now.getTime() / 10000).toString();
+
         const rate = await db
             .prepare(`
                 SELECT COUNT(*) AS request_count
@@ -275,68 +278,57 @@ export async function onRequestPost(context) {
         }
 
 
-        // =========================
-        // 200+ → CẢNH BÁO NGHIÊM TRỌNG
-        // =========================
 
-        const recentEvent = await db
-    .prepare(`
-        SELECT id
-        FROM security_events
-        WHERE ip = ?
-        AND detected_at >= ?
-        LIMIT 1
-    `)
-    .bind(ip, windowStart)
-    .first();
-
-if (!recentEvent) {
 
     if (requestCount >= criticalThreshold) {
 
-        await db
-            .prepare(`
-                INSERT INTO security_events (
-                    ip,
-                    event_type,
-                    request_count,
-                    window_seconds,
-                    detected_at
-                )
-                VALUES (?, ?, ?, ?, ?)
-            `)
-            .bind(
+    await db
+        .prepare(`
+            INSERT OR IGNORE INTO security_events (
                 ip,
-                "CRITICAL",
-                requestCount,
-                10,
-                nowISO
+                event_type,
+                request_count,
+                window_seconds,
+                detected_at,
+                window_key
             )
-            .run();
+            VALUES (?, ?, ?, ?, ?, ?)
+        `)
+        .bind(
+            ip,
+            "CRITICAL",
+            requestCount,
+            10,
+            nowISO,
+            windowKey
+        )
+        .run();
 
-    } else if (requestCount >= warnThreshold) {
+} else if (requestCount >= warnThreshold) {
 
-        await db
-            .prepare(`
-                INSERT INTO security_events (
-                    ip,
-                    event_type,
-                    request_count,
-                    window_seconds,
-                    detected_at
-                )
-                VALUES (?, ?, ?, ?, ?)
-            `)
-            .bind(
+    await db
+        .prepare(`
+            INSERT OR IGNORE INTO security_events (
                 ip,
-                "WARNING",
-                requestCount,
-                10,
-                nowISO
+                event_type,
+                request_count,
+                window_seconds,
+                detected_at,
+                window_key
             )
-            .run();
+            VALUES (?, ?, ?, ?, ?, ?)
+        `)
+        .bind(
+            ip,
+            "WARNING",
+            requestCount,
+            10,
+            nowISO,
+            windowKey
+        )
+        .run();
     }
-}
+
 
         return Response.json(
             {

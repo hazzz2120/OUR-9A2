@@ -6,10 +6,21 @@ export async function onRequest(context) {
     }
 
     const ip =
-        context.request.headers.get("CF-Connecting-IP") ||
-        "unknown";
+    context.request.headers.get("CF-Connecting-IP") ||
+    "unknown";
 
-    try {
+const url = new URL(context.request.url);
+
+// Cho phép IP đang bị ban vẫn vào khu vực admin
+if (
+    url.pathname === "/admin.html" ||
+    url.pathname.startsWith("/api/security") ||
+    url.pathname.startsWith("/api/stats")
+) {
+    return context.next();
+}
+
+try {
         const banned = await db
             .prepare(`
                 SELECT

@@ -118,6 +118,12 @@
 
     <h3>⚠️ IP đáng ngờ</h3>
 
+    <button
+    id="deleteAllEvents"
+    style="width:auto;padding:10px 16px;margin:10px 0;">
+    🗑️ Xóa tất cả cảnh báo
+    </button>
+
     <div style="overflow-x:auto;">
         <table>
             <thead>
@@ -517,22 +523,27 @@ async function loadSecurity() {
 
                     <td>
                         <button
-                            onclick="banIP(
-                                '${escapeJs(event.ip)}',
-                                '30',
-                                false
-                            )">
-                            Ban 30 phút
-                        </button>
+    onclick="banIP(
+        '${escapeJs(event.ip)}',
+        '30',
+        false
+    )">
+    Ban 30 phút
+</button>
 
-                        <button
-                            onclick="banIP(
-                                '${escapeJs(event.ip)}',
-                                '0',
-                                true
-                            )">
-                            Ban vĩnh viễn
-                        </button>
+<button
+    onclick="banIP(
+        '${escapeJs(event.ip)}',
+        '0',
+        true
+    )">
+    Ban vĩnh viễn
+</button>
+
+<button
+    onclick="deleteEvent(${event.id})">
+    Xóa
+</button>
                     </td>
                 </tr>
             `;
@@ -759,7 +770,64 @@ document.querySelector(
 
     await loadSecurity();
 };
+async function deleteEvent(id) {
+    const response = await fetch("/api/security", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${adminToken}`
+        },
+        body: JSON.stringify({
+            action: "delete_event",
+            id
+        })
+    });
 
+    const data = await response.json();
+
+    if (!response.ok || !data.ok) {
+        alert(data.error || "Không thể xóa cảnh báo.");
+        return;
+    }
+
+    await loadSecurity();
+}
+
+
+document.querySelector("#deleteAllEvents").onclick =
+    async () => {
+
+        if (!confirm("Xóa toàn bộ cảnh báo?")) {
+            return;
+        }
+
+        const response = await fetch(
+            "/api/security",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${adminToken}`
+                },
+                body: JSON.stringify({
+                    action: "delete_all_events"
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok || !data.ok) {
+            alert(
+                data.error ||
+                "Không thể xóa cảnh báo."
+            );
+            return;
+        }
+
+        await loadSecurity();
+    };
+    
 loginButton.onclick = async () => {
     adminToken = tokenInput.value.trim();
 

@@ -335,6 +335,55 @@ export async function onRequestPost(context) {
         });
     }
 
+    // =========================
+// XÓA 1 CẢNH BÁO
+// =========================
+
+if (action === "delete_event") {
+    const id = Number(body.id);
+
+    if (!Number.isInteger(id) || id <= 0) {
+        return Response.json(
+            {
+                ok: false,
+                error: "ID cảnh báo không hợp lệ."
+            },
+            { status: 400 }
+        );
+    }
+
+    await db
+        .prepare(`
+            DELETE FROM security_events
+            WHERE id = ?
+        `)
+        .bind(id)
+        .run();
+
+    return Response.json({
+        ok: true,
+        action: "delete_event",
+        id
+    });
+}
+
+
+// =========================
+// XÓA TẤT CẢ CẢNH BÁO
+// =========================
+
+if (action === "delete_all_events") {
+    await db
+        .prepare(`
+            DELETE FROM security_events
+        `)
+        .run();
+
+    return Response.json({
+        ok: true,
+        action: "delete_all_events"
+    });
+}
 
     return Response.json(
         {

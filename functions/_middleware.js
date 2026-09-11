@@ -5,18 +5,23 @@ export async function onRequest(context) {
         return context.next();
     }
 
+    const url = new URL(context.request.url);
+
+    // ADMIN LUÔN ĐƯỢC TRUY CẬP
+    if (
+        url.pathname === "/admin.html" ||
+        url.pathname.startsWith("/api/stats") ||
+        url.pathname.startsWith("/api/security") ||
+        url.pathname.startsWith("/api/ipinfo")
+    ) {
+        return context.next();
+    }
+
     const ip =
-    context.request.headers.get("CF-Connecting-IP") ||
-    "unknown";
+        context.request.headers.get("CF-Connecting-IP") ||
+        "unknown";
 
-const url = new URL(context.request.url);
-
-// Cho phép IP đang bị ban vẫn vào khu vực admin
-if (url.pathname === "/admin.html") {
-    return context.next();
-}
-
-try {
+    try {
         const banned = await db
             .prepare(`
                 SELECT
@@ -36,7 +41,8 @@ try {
                     {
                         status: 403,
                         headers: {
-                            "Content-Type": "text/plain; charset=UTF-8"
+                            "Content-Type":
+                                "text/plain; charset=UTF-8"
                         }
                     }
                 );
@@ -51,7 +57,8 @@ try {
                     {
                         status: 403,
                         headers: {
-                            "Content-Type": "text/plain; charset=UTF-8"
+                            "Content-Type":
+                                "text/plain; charset=UTF-8"
                         }
                     }
                 );
@@ -67,7 +74,10 @@ try {
         }
 
     } catch (error) {
-        console.error("Ban middleware error:", error);
+        console.error(
+            "Ban middleware error:",
+            error
+        );
     }
 
     return context.next();

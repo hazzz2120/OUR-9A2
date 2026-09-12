@@ -76,7 +76,7 @@ websiteIntro: {
                 "web được phát triển bởi Đinh Việt Anh, 1 thành viên của 9A2. ",
 
 
-            facebook: "https://www.facebook.com/z.vianh"
+            facebook: "https://my-web-258.pages.dev/"
 
         },
 
@@ -486,15 +486,15 @@ function showWebsiteIntro() {
             <h3>${part.title}</h3>
             <p>${part.text}</p>
 
-            ${
-                part.facebook
-                ? `<a href="${part.facebook}" 
-                     target="_blank" 
-                     class="facebook-link">
-                     Facebook
-                   </a>`
-                : ""
-            }
+            ${ 
+    part.facebook 
+    ? `<a href="${part.facebook}"  
+         target="_blank"  
+         class="facebook-link"> 
+         Website của tôi 
+       </a>` 
+    : "" 
+}
         `;
 
         introParts.appendChild(element);

@@ -73,7 +73,7 @@ websiteIntro: {
                 "04 - Người phát triển web",
 
             text:
-                "web được phát triển bởi Đinh Việt Anh, 1 thành viên của 9A2.",
+                "web được phát triển bởi Đinh Việt Anh, 1 thành viên của 9A2. ",
 
 
             facebook: "https://www.facebook.com/z.vianh"
@@ -170,7 +170,7 @@ websiteIntro: {
             name: "Nguyễn Phúc Khánh Nam",
             role: "Thành viên lớp",
 
-            image: "assets/anh/nam.jpg",
+            image: "assets/anh/images.jpg",
 
             hobby: "đạp xe",
             message: "mê xe hơn mê gái",
